@@ -38,7 +38,9 @@ DEVUELVE SOLO JSON:
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "deepseek-r1:free",
+        //model: "deepseek-r1:free",
+        // model: "llama3-8b",
+        model: "qwen2.5:7b",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7
       })
