@@ -172,6 +172,21 @@ body {
   margin: 2px 0;
 }
 
+.bossAI {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 18px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+.bossAI h4 {
+  margin: 10px 0 4px 0;
+  color: #dcd7ff;
+  font-size: 14px;
+}
+
 /* STATS BOX */
 
 .bossStats {
