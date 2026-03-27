@@ -8,7 +8,10 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
   try {
-    const body = JSON.parse(req.body);
+    let body = req.body;
+    if (typeof body === "string") {
+      body = JSON.parse(body);
+    }
 
     const prompt = `
 Eres un generador de jefes para un modo Boss Planechase de Magic: The Gathering.
@@ -46,6 +49,8 @@ DEVUELVE SOLO JSON:
     });
 
     const data = await response.json();
+    console.log("DeepSeek raw response:", data);
+
 
     if (!data.choices || !data.choices[0]) {
       console.error("DeepSeek error:", data);
@@ -53,6 +58,7 @@ DEVUELVE SOLO JSON:
     }
 
     const content = data.choices[0].message.content.trim();
+    console.log("DeepSeek content:", content);
 
     try {
       const parsed = JSON.parse(content);
