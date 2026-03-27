@@ -10,25 +10,52 @@ export default async function handler(req, res) {
     if (typeof body === "string") body = JSON.parse(body);
 
     const prompt = `
-Eres un generador de jefes para un modo Boss Planechase de Magic: The Gathering.
-Convierte esta carta en un jefe con habilidades reales, equilibradas y temáticas.
+Eres un diseñador experto de modos de juego para Magic: The Gathering.
+Tu tarea es transformar una criatura legendaria en un JEFE para el modo Boss Planechase.
 
-DATOS:
-Oracle: ${body.oracle}
-Colores: ${body.colors.join(", ")}
-Tipo: ${body.type}
-Power/Toughness: ${body.power}/${body.toughness}
-CMC: ${body.cmc}
-Jugadores: ${body.players}
+Debes LEER y ANALIZAR el texto original de la criatura (oracle text) y generar habilidades de jefe que:
+- Mantengan la identidad mecánica de la carta
+- Conserven su estilo, temática y sinergias
+- No copien literalmente el texto original
+- Amplíen su poder para un combate multijugador
+- Sean claras, equilibradas y jugables
+- Encajen en un combate por fases contra un jefe
 
-DEVUELVE SOLO JSON:
+USA el oracle text como INSPIRACIÓN DIRECTA para las habilidades.
+
+DATOS DE LA CARTA:
+Oracle: {{oracle}}
+Colores: {{colors}}
+Tipo: {{type}}
+Power/Toughness: {{power}}/{{toughness}}
+CMC: {{cmc}}
+Jugadores: {{players}}
+
+DEVUELVE SOLO JSON ESTRICTO con este formato:
+
 {
-  "pasivas": ["...", "...", "..."],
-  "turno": ["...", "...", "..."],
-  "caos": ["...", "...", "..."],
-  "fase50": "...",
-  "faseFinal": "..."
+  "pasivas": [
+    "Habilidad pasiva 1 basada en el oracle text",
+    "Habilidad pasiva 2 basada en el oracle text",
+    "Habilidad pasiva 3 basada en el oracle text"
+  ],
+  "turno": [
+    "Habilidad que el jefe ejecuta automáticamente al inicio de su turno",
+    "Otra habilidad de turno inspirada en el texto original",
+    "Otra habilidad de turno"
+  ],
+  "caos": [
+    "Efecto poderoso y temático cuando un jugador obtiene CAOS",
+    "Otro efecto de caos",
+    "Otro efecto de caos"
+  ],
+  "fase50": "Transformación o mejora cuando el jefe llega al 50% de vida, inspirada en su mecánica original",
+  "faseFinal": "Ataque final o forma definitiva basada en la identidad de la carta"
 }
+
+NO añadas explicaciones.
+NO añadas texto fuera del JSON.
+NO repitas el texto original de la carta.
 `;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
