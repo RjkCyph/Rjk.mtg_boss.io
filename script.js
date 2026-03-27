@@ -163,17 +163,20 @@ function renderBoss(card, stats, aiAbilities) {
       <div class="bossAI">
         <strong>Generated Abilities:</strong>
 
-        <h4>Pasivas</h4>
+        <h4>Passive</h4>
         <ul>${aiAbilities.pasivas.map(a => `<li>${a}</li>`).join("")}</ul>
 
-        <h4>Turno</h4>
+        <h4>Turn</h4>
         <ul>${aiAbilities.turno.map(a => `<li>${a}</li>`).join("")}</ul>
 
-        <h4>Caos</h4>
+        <h4>Chaos</h4>
         <ul>${aiAbilities.caos.map(a => `<li>${a}</li>`).join("")}</ul>
 
-        <h4>25% Vida</h4>
+        <h4>25% Low Life</h4>
         <p>${aiAbilities.fase50}</p>
+
+        <h4>Reward</h4>
+        <p>${aiAbilities.reward}</p>
       </div>
     `;
   }
