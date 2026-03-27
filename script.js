@@ -1,17 +1,12 @@
-// Últimos jefes generados (para export JSON)
 let lastGeneratedBosses = [];
 
-// ======================================================
-// 1. FETCH A SCRYFALL
-// ======================================================
+// 1. FETCH SCRYFALL
 
 async function fetchLegendary(colorFilter = "") {
   let query = "is:legendary type:creature";
   if (colorFilter) query += ` c:${colorFilter}`;
 
   const url = `https://api.scryfall.com/cards/random?q=${encodeURIComponent(query)}`;
-  console.log("Fetching:", url);
-
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Error al llamar a Scryfall: " + response.status);
@@ -19,9 +14,7 @@ async function fetchLegendary(colorFilter = "") {
   return await response.json();
 }
 
-// ======================================================
-// 2. EXTRAER DATOS DE LA CARTA
-// ======================================================
+// 2. EXTRAER DATOS
 
 function extractCardData(card) {
   const face = card.card_faces ? card.card_faces[0] : card;
@@ -47,9 +40,7 @@ function extractCardData(card) {
   };
 }
 
-// ======================================================
-// 3. CÁLCULO DE STATS DE JEFE
-// ======================================================
+// 3. STATS JEFE
 
 function computeStats(card) {
   const hp = 20 + card.cmc * 5 + card.toughness * 2;
@@ -64,9 +55,7 @@ function computeStats(card) {
   return { hp, damage, defense, difficultyScore, difficultyLabel };
 }
 
-// ======================================================
-// 4. FASES SEGÚN COLORES
-// ======================================================
+// 4. FASES
 
 function phasesFromColors(colors) {
   const phases = [];
@@ -82,9 +71,7 @@ function phasesFromColors(colors) {
   return phases;
 }
 
-// ======================================================
-// 5. RENDER ESTILO “COMMANDER RANDOMIZER”
-// ======================================================
+// 5. RENDER
 
 function renderBoss(card, stats) {
   const colorNames = { W: "Blanco", U: "Azul", B: "Negro", R: "Rojo", G: "Verde" };
@@ -99,7 +86,7 @@ function renderBoss(card, stats) {
     .join("");
 
   return `
-    <div class="bossCard">
+    <article class="bossCard">
       <img src="${card.image}" alt="${card.name}">
 
       <div class="bossDetails">
@@ -128,18 +115,17 @@ function renderBoss(card, stats) {
           <a href="${card.scryfall_uri}" target="_blank">Ver carta en Scryfall</a>
         </p>
       </div>
-    </div>
+    </article>
   `;
 }
 
-// ======================================================
-// 6. FUNCIONES PÚBLICAS (BOTONES)
-// ======================================================
+// 6. BOTONES
 
 window.generateBoss = async function () {
   try {
     const color = document.getElementById("colorFilter").value;
-    document.getElementById("bossContainer").innerHTML = "<p>Generando jefe...</p>";
+    const container = document.getElementById("bossContainer");
+    container.innerHTML = "<p>Generando jefe...</p>";
 
     const raw = await fetchLegendary(color);
     const card = extractCardData(raw);
@@ -147,7 +133,7 @@ window.generateBoss = async function () {
 
     lastGeneratedBosses = [{ card, stats }];
 
-    document.getElementById("bossContainer").innerHTML = renderBoss(card, stats);
+    container.innerHTML = renderBoss(card, stats);
   } catch (err) {
     console.error(err);
     document.getElementById("bossContainer").innerHTML =
@@ -158,7 +144,8 @@ window.generateBoss = async function () {
 window.generateDungeon = async function () {
   try {
     const color = document.getElementById("colorFilter").value;
-    document.getElementById("bossContainer").innerHTML = "<p>Generando mazmorra...</p>";
+    const container = document.getElementById("bossContainer");
+    container.innerHTML = "<p>Generando mazmorra...</p>";
 
     const bosses = [];
     for (let i = 0; i < 3; i++) {
@@ -170,8 +157,7 @@ window.generateDungeon = async function () {
 
     lastGeneratedBosses = bosses;
 
-    document.getElementById("bossContainer").innerHTML =
-      bosses.map(b => renderBoss(b.card, b.stats)).join("");
+    container.innerHTML = bosses.map(b => renderBoss(b.card, b.stats)).join("");
   } catch (err) {
     console.error(err);
     document.getElementById("bossContainer").innerHTML =
@@ -196,3 +182,12 @@ window.exportJSON = function () {
 
   URL.revokeObjectURL(url);
 };
+
+// 7. TECLA ESPACIO PARA GENERAR
+
+window.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    e.preventDefault();
+    generateBoss();
+  }
+});
