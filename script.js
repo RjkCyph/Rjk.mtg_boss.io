@@ -103,6 +103,7 @@ function computeStats(card) {
    ⚠️ Son solo identidad temática.
 --------------------------------------------------------- */
 
+/*
 function phasesFromColors(colors) {
   const phases = [];
 
@@ -128,6 +129,7 @@ function phasesFromColors(colors) {
 
   return phases;
 }
+*/
 
 /* ---------------------------------------------------------
    6. RENDER DEL JEFE
