@@ -40,19 +40,19 @@
           </select>
         </div>
       
-        <div class="filter-block">
-          <label for="minCMC" class="filter-label">CMC Min</label>
-          <input type="number" id="minCMC" class="select small" placeholder="0">
+        <div class="slicer-group">
+          <label>CMC Minimum: <span id="cmcMinValue">0</span></label>
+          <input type="range" id="cmcMin" min="0" max="15" value="0">
         </div>
-      
-        <div class="filter-block">
-          <label for="maxCMC" class="filter-label">CMC Max</label>
-          <input type="number" id="maxCMC" class="select small" placeholder="10">
+        
+        <div class="slicer-group">
+          <label>CMC Maximum: <span id="cmcMaxValue">10</span></label>
+          <input type="range" id="cmcMax" min="0" max="20" value="10">
         </div>
-      
-        <div class="filter-block">
-          <label for="playerCount" class="filter-label">Players</label>
-          <input type="number" id="playerCount" class="select small" min="1" value="1">
+        
+        <div class="slicer-group">
+          <label>Players: <span id="playersValue">1</span></label>
+          <input type="range" id="players" min="1" max="6" value="1">
         </div>
       
       </div>
