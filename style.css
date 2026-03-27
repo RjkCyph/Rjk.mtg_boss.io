@@ -1,101 +1,240 @@
-/* ===========================
-   GLOBAL
-=========================== */
+/* GLOBAL */
+
+* {
+  box-sizing: border-box;
+}
 
 body {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  background: #1a1a1a;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #2b2340 0, #120f1f 40%, #050509 100%);
   color: #e6e6e6;
   margin: 0;
   padding: 20px;
-  text-align: center;
 }
 
-h1 {
+/* HEADER */
+
+.topbar {
+  text-align: center;
   margin-bottom: 25px;
+}
+
+.topbar h1 {
+  margin: 0 0 8px 0;
   font-weight: 600;
 }
 
-/* ===========================
-   CONTROLS
-=========================== */
+.subtitle {
+  margin: 0;
+  color: #b0a8d6;
+  font-size: 14px;
+}
+
+/* CONTROLS */
 
 #controls {
-  margin-bottom: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-button, select {
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 18px;
-  margin: 5px;
   font-size: 15px;
-  border-radius: 8px;
-  border: none;
+  border-radius: 999px;
+  border: 1px solid transparent;
   cursor: pointer;
-  background: #3a3a3a;
-  color: white;
-  transition: 0.2s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
 }
 
-button:hover, select:hover {
-  background: #505050;
+.btn-icon {
+  font-size: 16px;
 }
 
-/* ===========================
-   BOSS CARD LAYOUT
-=========================== */
+.primary {
+  background: linear-gradient(135deg, #7b3fe4, #c86dd7);
+  border-color: #f5d06b;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(200, 109, 215, 0.5);
+}
+
+.primary:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 18px rgba(245, 208, 107, 0.7);
+}
+
+.secondary {
+  background: #2f2a45;
+  color: #f0f0f0;
+  border-color: #4b436b;
+}
+
+.secondary:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 12px rgba(123, 63, 228, 0.5);
+}
+
+.ghost {
+  background: transparent;
+  color: #d0cfe8;
+  border-color: #5a5675;
+}
+
+.ghost:hover {
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 10px rgba(255,255,255,0.15);
+}
+
+.select {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #4b436b;
+  background: #1b1728;
+  color: #e6e6e6;
+  font-size: 14px;
+}
+
+/* HINT */
+
+#hint {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #a9a3c8;
+  font-size: 13px;
+}
+
+.keycap {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #2b2740;
+  border: 1px solid #4b436b;
+}
+
+/* BOSS CARD LAYOUT */
+
+#bossContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  min-height: 200px;
+}
 
 .bossCard {
   display: flex;
-  background: #2b2b2b;
+  background: rgba(20, 16, 32, 0.95);
   padding: 20px;
-  border-radius: 14px;
-  box-shadow: 0 0 18px rgba(0,0,0,0.5);
-  width: 850px;
-  margin: 0 auto 30px auto;
-  gap: 25px;
+  border-radius: 16px;
+  box-shadow: 0 0 24px rgba(0,0,0,0.7);
+  width: 880px;
+  max-width: 100%;
+  margin: 0 auto;
+  gap: 24px;
+  border: 1px solid rgba(245, 208, 107, 0.35);
+  animation: fadeIn 0.25s ease-out;
 }
 
-/* CARD IMAGE — PERFECT PROPORTIONS */
+/* CARD IMAGE */
+
 .bossCard img {
   height: 480px;
   width: auto;
   aspect-ratio: 63 / 88;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+  box-shadow: 0 0 16px rgba(0,0,0,0.6);
 }
 
 /* RIGHT PANEL */
+
 .bossDetails {
   flex: 1;
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+}
+
+.bossDetails h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.bossDetails p {
+  margin: 2px 0;
 }
 
 /* STATS BOX */
+
 .bossStats {
-  background: rgba(255,255,255,0.06);
-  padding: 12px 15px;
+  background: rgba(255,255,255,0.04);
+  padding: 10px 14px;
   border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 .bossStats p {
-  margin: 6px 0;
+  margin: 4px 0;
 }
 
 /* LIST SECTIONS */
+
+.bossAbilities strong,
+.bossPhases strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
 .bossAbilities ul,
 .bossPhases ul {
-  padding-left: 20px;
-  margin: 6px 0;
+  padding-left: 18px;
+  margin: 4px 0 0 0;
+  font-size: 14px;
 }
 
 /* FOOTER */
+
 #version {
-  margin-top: 40px;
+  margin-top: 35px;
   text-align: center;
-  color: #888;
-  font-size: 14px;
+  color: #8f88b5;
+  font-size: 13px;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .bossCard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .bossCard img {
+    height: 380px;
+  }
+
+  .bossDetails {
+    width: 100%;
+  }
 }
