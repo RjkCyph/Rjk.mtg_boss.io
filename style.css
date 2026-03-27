@@ -1,55 +1,45 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #1e1e1e;
-  color: #eee;
-  padding: 20px;
-  text-align: center;
-}
-
-#controls {
-  margin-bottom: 20px;
-}
-
-button, select {
-  padding: 10px 15px;
-  margin: 5px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
-button {
-  background: #4a90e2;
-  color: white;
-}
-
-button:hover {
-  background: #357ab8;
-}
-
-#bossContainer {
+.bossCard {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  background: #2b2b2b;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  width: 700px;
+  margin: 0 auto;
   gap: 20px;
 }
 
-.bossCard {
-  background: #2b2b2b;
-  padding: 20px;
-  width: 350px;
+.bossCard img {
+  width: 300px;
   border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 0 10px #000;
 }
 
-.bossCard img {
-  width: 100%;
+.bossDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bossDetails h2 {
+  margin-top: 0;
+}
+
+.bossStats {
+  background: #1e1e1e;
+  padding: 10px 15px;
   border-radius: 8px;
   margin-bottom: 10px;
 }
 
-pre {
-  white-space: pre-wrap;
+.bossStats p {
+  margin: 4px 0;
+}
+
+.bossAbilities, .bossPhases {
+  margin-top: 10px;
+}
+
+.bossAbilities ul, .bossPhases ul {
+  padding-left: 20px;
 }
