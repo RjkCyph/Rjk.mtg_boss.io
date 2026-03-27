@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Modo Campaña — MTG Boss Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="topbar">
+    <h1>Modo Campaña — Planechase + Bosses</h1>
+    <p class="subtitle">Guía completa del sistema de juego</p>
+  </header>
+
+  <main class="rules-container">
+
+    <section class="rules-block">
+      <h2>📜 Introducción</h2>
+      <p>
+        Este modo de juego combina <strong>Commander</strong>, <strong>Planechase</strong> y un sistema de 
+        <strong>jefes escalables</strong> para crear una experiencia tipo campaña, similar a un roguelite 
+        cooperativo donde el multiverso reacciona a las acciones de los jugadores.
+      </p>
+    </section>
+
+    <section class="rules-block">
+      <h2>🧭 Estructura de la Campaña</h2>
+      <p>Una campaña típica tiene entre <strong>5 y 7 planos</strong>, terminando en un jefe final.</p>
+
+      <ul>
+        <li><strong>1. Plano Inicial</strong> — dificultad baja</li>
+        <li><strong>2. Plano Salvaje</strong> — aleatorio</li>
+        <li><strong>3. Plano Temático</strong> — relacionado con la historia</li>
+        <li><strong>4. Plano de Crisis</strong> — jefe más duro</li>
+        <li><strong>5. Plano de Giro</strong> — efecto global negativo</li>
+        <li><strong>6. Plano Final</strong> — jefe mítico</li>
+      </ul>
+    </section>
+
+    <section class="rules-block">
+      <h2>🐉 Encuentros con Jefes</h2>
+      <p>
+        Cada vez que el plano cambia, aparece un <strong>jefe</strong> asociado al plano. 
+        El jefe permanece hasta ser derrotado o hasta que el plano vuelva a cambiar.
+      </p>
+
+      <h3>✔ Reglas clave</h3>
+      <ul>
+        <li>Solo reciben recompensas los jugadores que infligen <strong>al menos 1 daño</strong> al jefe.</li>
+        <li>Si el jefe escapa, aplica un <strong>penalizador persistente</strong> para el resto de la campaña.</li>
+        <li>Los jefes escalan según el número de jugadores.</li>
+      </ul>
+    </section>
+
+    <section class="rules-block">
+      <h2>💎 Recompensas</h2>
+      <p>Los jugadores que dañan al jefe eligen una recompensa según su categoría:</p>
+
+      <h3>⭐ Recompensas Menores</h3>
+      <ul>
+        <li>Crear 2 Tesoros</li>
+        <li>Scry 3, luego roba 1</li>
+        <li>2 contadores +1/+1</li>
+        <li>Mirar 5 cartas, quedarse 1</li>
+      </ul>
+
+      <h3>🔥 Recompensas Mayores</h3>
+      <ul>
+        <li>Tu próximo hechizo cuesta 3 menos</li>
+        <li>Lanza un hechizo de MV ≤3 desde tu cementerio</li>
+        <li>Crear un Ángel 4/4 con volar</li>
+        <li>Buscar una tierra básica al campo</li>
+      </ul>
+
+      <h3>💠 Recompensas Míticas</h3>
+      <ul>
+        <li>Emblema: “Una vez por turno, agrega un mana de cualquier color.”</li>
+        <li>Emblema: “Tu primera criatura cada turno cuesta 1 menos.”</li>
+        <li>Emblema: “Cuando ataques a un jefe, roba una carta.”</li>
+      </ul>
+    </section>
+
+    <section class="rules-block">
+      <h2>💀 Penalizaciones Persistentes</h2>
+      <p>Si un jefe escapa, su penalización se vuelve permanente.</p>
+
+      <h3>⚠ Penalizaciones Menores</h3>
+      <ul>
+        <li>Los jugadores empiezan con 38 vidas</li>
+        <li>Las criaturas entran giradas</li>
+        <li>En cada mantenimiento, pierdes 1 vida</li>
+      </ul>
+
+      <h3>🔥 Penalizaciones Mayores</h3>
+      <ul>
+        <li>Los hechizos no-criatura cuestan 1 más</li>
+        <li>Sacrifica una criatura al inicio de cada partida</li>
+        <li>Robas una carta menos en tu primer turno</li>
+      </ul>
+
+      <h3>💀 Penalizaciones Míticas</h3>
+      <ul>
+        <li>Todos los jugadores empiezan con un emblema de maldición</li>
+        <li>No puedes ganar vidas</li>
+        <li>Empiezas cada partida con un 4/4 enemigo en mesa</li>
+      </ul>
+    </section>
+
+    <section class="rules-block">
+      <h2>🌍 Jefes por Plano</h2>
+      <p>Cada plano tiene un jefe único con:</p>
+
+      <ul>
+        <li>Vida escalada por jugadores</li>
+        <li>Trigger de ataque</li>
+        <li>Trigger de caos</li>
+        <li>Recompensa temática</li>
+        <li>Penalización persistente</li>
+      </ul>
+
+      <h3>Ejemplo — Innistrad</h3>
+      <p><strong>“The Howling Host”</strong></p>
+      <ul>
+        <li>HP: 12 × jugadores</li>
+        <li>Ataque: Cada jugador pierde 2 vidas</li>
+        <li>Caos: Crea un Espíritu 2/2</li>
+        <li>Recompensa: Exilia una carta de un cementerio; si es criatura, crea un Zombie 2/2</li>
+        <li>Penalización: “En cada mantenimiento, muele 2.”</li>
+      </ul>
+    </section>
+
+    <section class="rules-block">
+      <h2>🏆 Plano Final</h2>
+      <p>El último plano contiene un jefe de dos fases.</p>
+
+      <h3>Ejemplo — Nueva Phyrexia</h3>
+      <ul>
+        <li>Fase 1: Tapear criaturas, sacrificar permanentes</li>
+        <li>Fase 2: Veneno acumulativo y daño duplicado</li>
+      </ul>
+
+      <p>Los jugadores que dañen al jefe final reciben un <strong>emblema legendario</strong>.</p>
+    </section>
+
+    <div class="back-btn">
+      <a href="index.html" class="btn ghost">⬅ Volver al generador</a>
+    </div>
+
+  </main>
+
+  <footer id="version">
+    MTG Boss Generator — Modo Campaña — v1.0
+  </footer>
+
+</body>
+</html>
