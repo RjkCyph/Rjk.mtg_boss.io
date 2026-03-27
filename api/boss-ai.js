@@ -35,20 +35,19 @@ RETURN ONLY STRICT JSON in this format:
 
 {
   "pasivas": [
-    Passive ability 1 based on the oracle text"
+    One unique Passive ability based on the oracle text"
   ],
   "turno": [
-    "Ability the boss performs automatically at the start of its turn inspired by the original text"
+    "One unique Ability the boss performs automatically at the start of each player turn inspired by the original oracle text"
   ],
   "caos": [
-    "Powerful thematic effect when a player rolls CHAOS"
+    "One Powerful thematic effect when a player rolls CHAOS, inspired by its original oracle tex"
   ],
-  "fase50": "Transformation or upgrade when the boss reaches 25% life, inspired by its original mechanics"
+  "fase50": "Transformation or upgrade when the boss reaches 25% life, inspired by its original oracle text"
 }
 
 Do NOT add explanations.
 Do NOT add text outside the JSON.
-Do NOT repeat the original card text.
 `;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
