@@ -258,6 +258,18 @@ body {
   transform: translateY(0);
 }
 
+.btn.info {
+  background: #1f1b2e;
+  border: 1px solid #6a5fa8;
+  color: #dcd7ff;
+}
+
+.btn.info:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 14px rgba(140, 120, 255, 0.5);
+  background: #2a2440;
+}
+
 
 /* ANIMATIONS */
 
