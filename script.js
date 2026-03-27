@@ -98,18 +98,12 @@ function computeStats(card) {
 }
 
 /* ---------------------------------------------------------
-   5. IDENTIDAD POR COLOR (SE MANTIENE)
-   ⚠️ Estas NO son habilidades reales del jefe.
-   ⚠️ Son solo identidad temática.
---------------------------------------------------------- */
-
-/* ---------------------------------------------------------
    6. RENDER DEL JEFE
 --------------------------------------------------------- */
 
 function renderBoss(card, stats, aiAbilities) {
-  const colorNames = { W: "Blanco", U: "Azul", B: "Negro", R: "Rojo", G: "Verde" };
-  const colors = card.colors.length ? card.colors.map(c => colorNames[c]).join(", ") : "Incoloro";
+  const colorNames = { W: "White", U: "Blue", B: "Black", R: "Red", G: "Green" };
+  const colors = card.colors.length ? card.colors.map(c => colorNames[c]).join(", ") : "Colorless";
 
   const abilities = card.keywords.length
     ? card.keywords.map(k => `<li>${k}</li>`).join("")
@@ -119,7 +113,7 @@ function renderBoss(card, stats, aiAbilities) {
   if (aiAbilities) {
     aiBlock = `
       <div class="bossAI">
-        <strong>Habilidades generadas por IA:</strong>
+        <strong>Generated Abilities:</strong>
 
         <h4>Pasivas</h4>
         <ul>${aiAbilities.pasivas.map(a => `<li>${a}</li>`).join("")}</ul>
@@ -142,14 +136,14 @@ function renderBoss(card, stats, aiAbilities) {
 
       <div class="bossDetails">
         <h2>${card.name}</h2>
-        <p><strong>Colores:</strong> ${colors}</p>
-        <p><strong>Tipos:</strong> ${card.types}</p>
+        <p><strong>Colors:</strong> ${colors}</p>
+        <p><strong>Types:</strong> ${card.types}</p>
 
         <div class="bossStats">
-          <p><strong>❤️ Vida:</strong> ${stats.hp}</p>
-          <p><strong>⚔️ Daño:</strong> ${stats.damage}</p>
-          <p><strong>🛡️ Defensa:</strong> ${stats.defense}</p>
-          <p><strong>Dificultad:</strong> ${stats.difficultyLabel} (Score: ${stats.difficultyScore})</p>
+          <p><strong>❤️ Life:</strong> ${stats.hp}</p>
+          <p><strong>⚔️ Damage:</strong> ${stats.damage}</p>
+          <p><strong>🛡️ Defense:</strong> ${stats.defense}</p>
+          <p><strong>Difficulty:</strong> ${stats.difficultyLabel} (Score: ${stats.difficultyScore})</p>
         </div>
 
         ${aiBlock}
