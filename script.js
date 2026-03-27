@@ -103,34 +103,6 @@ function computeStats(card) {
    ⚠️ Son solo identidad temática.
 --------------------------------------------------------- */
 
-/*
-function phasesFromColors(colors) {
-  const phases = [];
-
-  if (colors.includes("R")) {
-    phases.push("🔥 Identidad Roja: Furia, daño explosivo, agresión.");
-  }
-  if (colors.includes("U")) {
-    phases.push("🔵 Identidad Azul: Control, manipulación, copia.");
-  }
-  if (colors.includes("B")) {
-    phases.push("⚫ Identidad Negra: Nigromancia, drenaje, sacrificios.");
-  }
-  if (colors.includes("W")) {
-    phases.push("⚪ Identidad Blanca: Orden, castigo, protección.");
-  }
-  if (colors.includes("G")) {
-    phases.push("🟢 Identidad Verde: Crecimiento, fuerza, criaturas grandes.");
-  }
-
-  if (phases.length === 0) {
-    phases.push("⚙️ Identidad Incolora: Caos, distorsión, efectos impredecibles.");
-  }
-
-  return phases;
-}
-*/
-
 /* ---------------------------------------------------------
    6. RENDER DEL JEFE
 --------------------------------------------------------- */
