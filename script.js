@@ -185,11 +185,6 @@ function renderBoss(card, stats, aiAbilities) {
           <p><strong>Dificultad:</strong> ${stats.difficultyLabel} (Score: ${stats.difficultyScore})</p>
         </div>
 
-        <div class="bossPhases">
-          <strong>Identidad del jefe (según colores):</strong>
-          <ul>${identity}</ul>
-        </div>
-
         ${aiBlock}
 
         <p style="margin-top:10px;">
