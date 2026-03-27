@@ -7,7 +7,7 @@ let lastGeneratedBosses = [];
 async function generateBossAI(card) {
   const players = parseInt(document.getElementById("playerCount").value) || 1;
 
-  const response = await fetch("/api/boss-ai", {
+  const response = await fetch("https://rjk-mtg-boss-io.vercel.app/api/boss-ai", {
     method: "POST",
     body: JSON.stringify({
       oracle: card.oracle_text,
