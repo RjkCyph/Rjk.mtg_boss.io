@@ -55,9 +55,14 @@ function extractCardData(card) {
 // 3. STATS JEFE
 
 function computeStats(card) {
-  const hp = 20 + card.cmc * 5 + card.toughness * 2;
-  const damage = card.power + Math.floor(card.cmc / 2);
-  const defense = 5 + card.toughness;
+  const players = parseInt(document.getElementById("playerCount").value) || 1;
+
+  // Escalado por jugadores (ajústalo si quieres)
+  const scale = 1 + (players - 1) * 0.35;
+
+  const hp = Math.round((20 + card.cmc * 5 + card.toughness * 2) * scale);
+  const damage = Math.round((card.power + Math.floor(card.cmc / 2)) * scale);
+  const defense = Math.round((5 + card.toughness) * scale);
 
   const difficultyScore = card.cmc + card.keywords.length + card.colors.length * 2;
   let difficultyLabel = "Mini-jefe";
