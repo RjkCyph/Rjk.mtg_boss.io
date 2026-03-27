@@ -2,6 +2,30 @@ let lastGeneratedBosses = [];
 
 // 1. FETCH SCRYFALL
 
+async function generateBossAI(card) {
+  const players = parseInt(document.getElementById("playerCount").value) || 1;
+
+  const response = await fetch("/api/boss-ai", {
+    method: "POST",
+    body: JSON.stringify({
+      oracle: card.oracle_text,
+      colors: card.colors || [],
+      type: card.type_line || "",
+      power: card.power || "0",
+      toughness: card.toughness || "0",
+      cmc: card.cmc || 0,
+      players
+    })
+  });
+
+  if (!response.ok) {
+    console.error("Error IA:", response.status);
+    return null;
+  }
+
+  return await response.json();
+}
+
 async function fetchLegendary(colorFilter = "") {
   let query = "is:legendary type:creature r>=r";
 
@@ -128,7 +152,7 @@ function phasesFromColors(colors) {
 
 // 5. RENDER
 
-function renderBoss(card, stats) {
+function renderBoss(card, stats, aiAbilities) {
   const colorNames = { W: "Blanco", U: "Azul", B: "Negro", R: "Rojo", G: "Verde" };
   const colors = card.colors.length ? card.colors.map(c => colorNames[c]).join(", ") : "Incoloro";
 
@@ -136,9 +160,33 @@ function renderBoss(card, stats) {
     ? card.keywords.map(k => `<li>${k}</li>`).join("")
     : "<li>No tiene keywords relevantes</li>";
 
-  const phases = phasesFromColors(card.colors)
+  const phases = BossAI.phasesFromColors(card.colors)
     .map(p => `<li>${p}</li>`)
     .join("");
+
+  let aiBlock = "";
+  if (aiAbilities) {
+    aiBlock = `
+      <div class="bossAI">
+        <strong>Habilidades generadas por IA:</strong>
+
+        <h4>Pasivas</h4>
+        <ul>${aiAbilities.pasivas.map(a => `<li>${a}</li>`).join("")}</ul>
+
+        <h4>Turno</h4>
+        <ul>${aiAbilities.turno.map(a => `<li>${a}</li>`).join("")}</ul>
+
+        <h4>Caos</h4>
+        <ul>${aiAbilities.caos.map(a => `<li>${a}</li>`).join("")}</ul>
+
+        <h4>50% Vida</h4>
+        <p>${aiAbilities.fase50}</p>
+
+        <h4>Fase Final</h4>
+        <p>${aiAbilities.faseFinal}</p>
+      </div>
+    `;
+  }
 
   return `
     <article class="bossCard">
@@ -152,6 +200,7 @@ function renderBoss(card, stats) {
         <div class="bossStats">
           <p><strong>❤️ Vida:</strong> ${stats.hp}</p>
           <p><strong>⚔️ Daño:</strong> ${stats.damage}</p>
+          <p><strong>🛡️ Defensa:</strong> ${stats.defense}</p>
           <p><strong>Dificultad:</strong> ${stats.difficultyLabel} (Score: ${stats.difficultyScore})</p>
         </div>
 
@@ -164,6 +213,8 @@ function renderBoss(card, stats) {
           <strong>Fases del combate:</strong>
           <ul>${phases}</ul>
         </div>
+
+        ${aiBlock}
 
         <p style="margin-top:10px;">
           <a href="${card.scryfall_uri}" target="_blank">Ver carta en Scryfall</a>
@@ -184,6 +235,13 @@ window.generateBoss = async function () {
     const raw = await fetchLegendary(color);
     const card = extractCardData(raw);
     const stats = computeStats(card);
+
+    const aiAbilities = await generateBossAI(card);
+
+    lastGeneratedBosses = [{ card, stats, aiAbilities }];
+    
+    container.innerHTML = renderBoss(card, stats, aiAbilities);
+    
 
     lastGeneratedBosses = [{ card, stats }];
 
