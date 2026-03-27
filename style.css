@@ -302,6 +302,24 @@ body {
   margin-top: 30px;
 }
 
+.filter-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5px;
+}
+
+.filter-label {
+  font-size: 13px;
+  color: #b0a8d6;
+  margin-bottom: 4px;
+  padding-left: 4px;
+}
+
+.select.small {
+  width: 90px;
+}
+
 
 /* ANIMATIONS */
 
