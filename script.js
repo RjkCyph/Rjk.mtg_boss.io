@@ -11,15 +11,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const cmcMaxValue = document.getElementById("cmcMaxValue");
   const playersValue = document.getElementById("playersValue");
 
-  // Initialize displayed values
-  if (cmcMinValue) cmcMinValue.textContent = cmcMin.value;
-  if (cmcMaxValue) cmcMaxValue.textContent = cmcMax.value;
-  if (playersValue) playersValue.textContent = players.value;
+  // Defaults
+  cmcMin.value = 4;
+  cmcMax.value = 6;
+  players.value = 4;
 
-  // Live updates
-  cmcMin.oninput = () => cmcMinValue.textContent = cmcMin.value;
-  cmcMax.oninput = () => cmcMaxValue.textContent = cmcMax.value;
-  players.oninput = () => playersValue.textContent = players.value;
+  cmcMinValue.textContent = cmcMin.value;
+  cmcMaxValue.textContent = cmcMax.value;
+  playersValue.textContent = players.value;
+
+  cmcMin.oninput = () => {
+    if (parseInt(cmcMin.value) > parseInt(cmcMax.value)) {
+      cmcMax.value = cmcMin.value;
+      cmcMaxValue.textContent = cmcMax.value;
+    }
+    cmcMinValue.textContent = cmcMin.value;
+  };
+
+  cmcMax.oninput = () => {
+    if (parseInt(cmcMax.value) < parseInt(cmcMin.value)) {
+      cmcMin.value = cmcMax.value;
+      cmcMinValue.textContent = cmcMin.value;
+    }
+    cmcMaxValue.textContent = cmcMax.value;
+  };
+
+  players.oninput = () => {
+    playersValue.textContent = players.value;
+  };
 });
 
 
