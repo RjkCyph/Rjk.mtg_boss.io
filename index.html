@@ -8,33 +8,49 @@
 
 <body>
 
-  <h1>MTG Legendary Boss Generator</h1>
+  <header class="topbar">
+    <h1>MTG Legendary Boss Generator</h1>
+    <p class="subtitle">Genera jefes épicos a partir de comandantes legendarios de Magic: The Gathering</p>
+  </header>
 
-  <div id="controls">
-    <button onclick="generateBoss()">Generar Jefe</button>
-    <button onclick="generateDungeon()">Modo Mazmorra (3 jefes)</button>
+  <main>
+    <section id="controls">
+      <button class="btn primary" onclick="generateBoss()">
+        <span class="btn-icon">🔀</span>
+        <span>Generar Jefe</span>
+      </button>
 
-    <select id="colorFilter">
-      <option value="">Cualquier color</option>
-      <option value="W">Blanco</option>
-      <option value="U">Azul</option>
-      <option value="B">Negro</option>
-      <option value="R">Rojo</option>
-      <option value="G">Verde</option>
-    </select>
+      <button class="btn secondary" onclick="generateDungeon()">
+        <span class="btn-icon">🕳️</span>
+        <span>Modo Mazmorra (3 jefes)</span>
+      </button>
 
-    <button onclick="exportJSON()">Exportar JSON</button>
-  </div>
+      <select id="colorFilter" class="select">
+        <option value="">Cualquier color</option>
+        <option value="W">Blanco</option>
+        <option value="U">Azul</option>
+        <option value="B">Negro</option>
+        <option value="R">Rojo</option>
+        <option value="G">Verde</option>
+      </select>
 
-  <div id="bossContainer"></div>
+      <button class="btn ghost" onclick="exportJSON()">
+        <span class="btn-icon">📦</span>
+        <span>Exportar JSON</span>
+      </button>
+    </section>
 
-  <!-- Script SIEMPRE dentro del body -->
-  <script src="script.js" defer></script>
+    <section id="hint">
+      <p>Pulsa <span class="keycap">Espacio</span> para generar un jefe</p>
+    </section>
 
-  <!-- Footer también dentro del body -->
+    <section id="bossContainer"></section>
+  </main>
+
   <footer id="version">
-    MTG Boss Generator — v1.4
+    Data from Scryfall — © Wizards of the Coast — MTG Boss Generator v1.1
   </footer>
 
+  <script src="script.js" defer></script>
 </body>
 </html>
