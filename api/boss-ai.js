@@ -1,20 +1,20 @@
 export default async function handler(req, res) {
   try {
-    const { oracle, colors, type, power, toughness, cmc, players } = JSON.parse(req.body);
+    const body = JSON.parse(req.body);
 
     const prompt = `
 Eres un generador de jefes para un modo Boss Planechase de Magic: The Gathering.
 Convierte esta carta en un jefe con habilidades reales, equilibradas y temáticas.
 
 DATOS:
-Oracle: ${oracle}
-Colores: ${colors.join(", ")}
-Tipo: ${type}
-Power/Toughness: ${power}/${toughness}
-CMC: ${cmc}
-Jugadores: ${players}
+Oracle: ${body.oracle}
+Colores: ${body.colors.join(", ")}
+Tipo: ${body.type}
+Power/Toughness: ${body.power}/${body.toughness}
+CMC: ${body.cmc}
+Jugadores: ${body.players}
 
-DEVUELVE EN JSON ESTRICTO:
+DEVUELVE SOLO JSON:
 {
   "pasivas": ["...", "...", "..."],
   "turno": ["...", "...", "..."],
@@ -38,11 +38,24 @@ DEVUELVE EN JSON ESTRICTO:
     });
 
     const data = await response.json();
-    const content = data.choices[0].message.content;
 
-    res.status(200).json(JSON.parse(content));
+    if (!data.choices || !data.choices[0]) {
+      console.error("DeepSeek error:", data);
+      return res.status(500).json({ error: "Respuesta inválida de DeepSeek" });
+    }
+
+    const content = data.choices[0].message.content.trim();
+
+    try {
+      const parsed = JSON.parse(content);
+      return res.status(200).json(parsed);
+    } catch (e) {
+      console.error("JSON inválido recibido:", content);
+      return res.status(500).json({ error: "JSON inválido desde IA" });
+    }
+
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Error generando habilidades IA" });
+    console.error("Backend error:", err);
+    return res.status(500).json({ error: "Error generando habilidades IA" });
   }
 }
