@@ -1,17 +1,13 @@
 export default async function handler(req, res) {
-  // CORS FIX
+  // CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") return res.status(200).end();
 
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
   try {
     let body = req.body;
-    if (typeof body === "string") {
-      body = JSON.parse(body);
-    }
+    if (typeof body === "string") body = JSON.parse(body);
 
     const prompt = `
 Eres un generador de jefes para un modo Boss Planechase de Magic: The Gathering.
@@ -35,36 +31,35 @@ DEVUELVE SOLO JSON:
 }
 `;
 
-    const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "deepseek-chat",
+        model: "deepseek-r1:free",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7
       })
     });
 
     const data = await response.json();
-    console.log("DeepSeek raw response:", data);
-
+    console.log("OpenRouter raw:", data);
 
     if (!data.choices || !data.choices[0]) {
-      console.error("DeepSeek error:", data);
-      return res.status(500).json({ error: "Respuesta inválida de DeepSeek" });
+      console.error("OpenRouter error:", data);
+      return res.status(500).json({ error: "Respuesta inválida de OpenRouter" });
     }
 
     const content = data.choices[0].message.content.trim();
-    console.log("DeepSeek content:", content);
+    console.log("OpenRouter content:", content);
 
     try {
       const parsed = JSON.parse(content);
       return res.status(200).json(parsed);
     } catch (e) {
-      console.error("JSON inválido recibido:", content);
+      console.error("JSON inválido:", content);
       return res.status(500).json({ error: "JSON inválido desde IA" });
     }
 
