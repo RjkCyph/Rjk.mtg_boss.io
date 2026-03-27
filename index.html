@@ -15,50 +15,54 @@
 
   <main>
     <section id="controls">
-      <button class="btn primary" onclick="generateBoss()">
-        <span class="btn-icon">🔀</span>
-        <span>Generar Jefe</span>
-      </button>
+      <div id="controls">
+        <button class="btn primary" onclick="generateBoss()">
+          <span class="btn-icon">🔀</span>
+          <span>Generar Jefe</span>
+        </button>
       
-      <input type="number" id="playerCount" placeholder="Jugadores" class="select small" min="1" value="1">
-
-      <button class="btn secondary" onclick="generateDungeon()">
-        <span class="btn-icon">🕳️</span>
-        <span>Modo Mazmorra (3 jefes)</span>
-      </button>
-
-      <a href="rules.html" class="btn info">
+        <button class="btn secondary" onclick="generateDungeon()">
+          <span class="btn-icon">🕳️</span>
+          <span>Modo Mazmorra (3 jefes)</span>
+        </button>
+      
+        <div class="filter-block">
+          <label for="colorFilter" class="filter-label">Color</label>
+          <select id="colorFilter" class="select">
+            <option value="">Cualquier color</option>
+            <option value="W">Blanco</option>
+            <option value="U">Azul</option>
+            <option value="B">Negro</option>
+            <option value="R">Rojo</option>
+            <option value="G">Verde</option>
+          </select>
+        </div>
+      
+        <div class="filter-block">
+          <label for="minCMC" class="filter-label">CMC mínimo</label>
+          <input type="number" id="minCMC" class="select small" placeholder="0">
+        </div>
+      
+        <div class="filter-block">
+          <label for="maxCMC" class="filter-label">CMC máximo</label>
+          <input type="number" id="maxCMC" class="select small" placeholder="10">
+        </div>
+      
+        <div class="filter-block">
+          <label for="playerCount" class="filter-label">Jugadores</label>
+          <input type="number" id="playerCount" class="select small" min="1" value="1">
+        </div>
+      
+        <button class="btn ghost" onclick="exportJSON()">
+          <span class="btn-icon">📦</span>
+          <span>Exportar JSON</span>
+        </button>
+      
+      </div>
+       <a href="rules.html" class="btn info">
         <span class="btn-icon">📘</span>
         <span>Cómo funciona el modo campaña</span>
       </a>
-
-      
-
-      <select id="colorFilter" class="select">
-        <option value="">Cualquier color</option>
-        <option value="W">Blanco</option>
-        <option value="U">Azul</option>
-        <option value="B">Negro</option>
-        <option value="R">Rojo</option>
-        <option value="G">Verde</option>
-      </select>
-
-      <select id="colorFilter" class="select">
-        <option value="">Cualquier color</option>
-        <option value="W">Blanco</option>
-        <option value="U">Azul</option>
-        <option value="B">Negro</option>
-        <option value="R">Rojo</option>
-        <option value="G">Verde</option>
-      </select>
-
-<input type="number" id="minCMC" placeholder="CMC min" class="select small">
-<input type="number" id="maxCMC" placeholder="CMC max" class="select small">
-
-      <button class="btn ghost" onclick="exportJSON()">
-        <span class="btn-icon">📦</span>
-        <span>Exportar JSON</span>
-      </button>
     </section>
 
     <section id="hint">
