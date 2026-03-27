@@ -162,15 +162,15 @@ function renderBoss(card, stats, aiAbilities) {
     aiBlock = `
       <div class="bossAI">
         <strong>Generated Abilities:</strong>
-
+        
         <h4>Passive</h4>
-        <ul>${aiAbilities.pasivas.map(a => `<li>${a}</li>`).join("")}</ul>
+        <p>${aiAbilities.pasivas}</p>
 
         <h4>Turn</h4>
-        <ul>${aiAbilities.turno.map(a => `<li>${a}</li>`).join("")}</ul>
+        <p>${aiAbilities.turno}</p>
 
         <h4>Chaos</h4>
-        <ul>${aiAbilities.caos.map(a => `<li>${a}</li>`).join("")}</ul>
+        <p>${aiAbilities.caos}</p>
 
         <h4>25% Low Life</h4>
         <p>${aiAbilities.fase25}</p>
