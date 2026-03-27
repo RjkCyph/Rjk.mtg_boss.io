@@ -43,3 +43,10 @@
 .bossAbilities ul, .bossPhases ul {
   padding-left: 20px;
 }
+
+#version {
+  margin-top: 40px;
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+}
