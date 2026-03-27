@@ -67,7 +67,7 @@ NO repitas el texto original de la carta.
       body: JSON.stringify({
         //model: "deepseek-r1:free",
         // model: "llama3-8b",
-        model: "qwen2.5:7b",
+        model: "qwen/qwen2.5-7b-instruct",
         messages: [{ role: "user", content: prompt }],
         temperature: 0.7
       })
