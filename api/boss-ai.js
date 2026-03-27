@@ -20,6 +20,7 @@ You must READ and ANALYZE the creature's original oracle text and generate boss 
 - Scale its power for a multiplayer boss fight
 - Are clear, balanced, and playable
 - Fit a multi-phase boss encounter
+- Include a REWARD that scales with boss difficulty
 
 Use the oracle text as DIRECT INSPIRATION for the abilities.
 
@@ -31,19 +32,37 @@ Power/Toughness: {{power}}/{{toughness}}
 CMC: {{cmc}}
 Players: {{players}}
 
+BOSS DIFFICULTY RULE:
+Evaluate difficulty using this formula:
+difficultyScore = CMC + number_of_keywords + (number_of_colors × 2)
+
+Difficulty tiers:
+- 0–7  → Minor Boss
+- 8–12 → Major Boss
+- 13+  → Mythic Boss
+
+REWARD RULE:
+Generate ONE reward based on difficulty:
+- Minor Boss → Minor reward (small tempo, card selection, small tokens, small buffs)
+- Major Boss → Major reward (mana discount, recursion, strong tokens, card advantage)
+- Mythic Boss → Mythic reward (emblems, permanent upgrades, powerful effects)
+
+The reward MUST be thematic to the creature’s identity.
+
 RETURN ONLY STRICT JSON in this format:
 
 {
   "pasivas": [
-    One unique Passive ability based on the oracle text"
+    "One unique passive ability based on the oracle text"
   ],
   "turno": [
-    "One unique Ability the boss performs automatically at the start of each player turn inspired by the original oracle text"
+    "One unique ability the boss performs automatically at the start of each player turn"
   ],
   "caos": [
-    "One Powerful thematic effect when a player rolls CHAOS, inspired by its original oracle tex"
+    "One powerful thematic effect when a player rolls CHAOS"
   ],
-  "fase50": "Transformation or upgrade when the boss reaches 25% life, inspired by its original oracle text"
+  "fase50": "Transformation or upgrade when the boss reaches 25% life",
+  "reward": "One reward appropriate to the difficulty tier and inspired by the creature's theme"
 }
 
 Do NOT add explanations.
