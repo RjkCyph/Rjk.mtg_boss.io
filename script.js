@@ -115,10 +115,6 @@ function renderBoss(card, stats, aiAbilities) {
     ? card.keywords.map(k => `<li>${k}</li>`).join("")
     : "<li>No tiene keywords relevantes</li>";
 
-  const identity = phasesFromColors(card.colors)
-    .map(p => `<li>${p}</li>`)
-    .join("");
-
   let aiBlock = "";
   if (aiAbilities) {
     aiBlock = `
