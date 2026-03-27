@@ -10,9 +10,12 @@
 }
 
 .bossCard img {
-  width: 300px;
+  height: 420px;       /* tamaño perfecto para web */
+  width: auto;         /* mantiene proporción */
   border-radius: 10px;
+  object-fit: contain; /* evita distorsión */
 }
+
 
 .bossDetails {
   flex: 1;
@@ -26,11 +29,12 @@
 }
 
 .bossStats {
-  background: #1e1e1e;
+  background: rgba(255,255,255,0.05); /* muy suave */
   padding: 10px 15px;
   border-radius: 8px;
   margin-bottom: 10px;
 }
+
 
 .bossStats p {
   margin: 4px 0;
