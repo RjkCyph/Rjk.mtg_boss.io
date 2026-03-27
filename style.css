@@ -1,56 +1,98 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: #1a1a1a;
+  color: #e6e6e6;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* ===========================
+   CONTROLS
+=========================== */
+
+#controls {
+  margin-bottom: 25px;
+}
+
+button, select {
+  padding: 10px 18px;
+  margin: 5px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #3a3a3a;
+  color: white;
+  transition: 0.2s;
+}
+
+button:hover, select:hover {
+  background: #505050;
+}
+
+/* ===========================
+   BOSS CARD LAYOUT
+=========================== */
+
 .bossCard {
   display: flex;
   background: #2b2b2b;
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.5);
-  width: 700px;
-  margin: 0 auto;
-  gap: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 18px rgba(0,0,0,0.5);
+  width: 850px;
+  margin: 0 auto 30px auto;
+  gap: 25px;
 }
 
+/* CARD IMAGE — PERFECT PROPORTIONS */
 .bossCard img {
-  aspect-ratio: 63 / 88;   /* proporción exacta de carta MTG */
-  height: 420px;           /* tamaño consistente */
-  width: auto;             /* evita distorsión */
-  object-fit: cover;       /* mantiene proporción sin aplastar */
-  border-radius: 10px;
-  display: block;
+  height: 480px;
+  width: auto;
+  aspect-ratio: 63 / 88;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
 }
 
-
-
+/* RIGHT PANEL */
 .bossDetails {
   flex: 1;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  gap: 12px;
 }
 
-.bossDetails h2 {
-  margin-top: 0;
-}
-
+/* STATS BOX */
 .bossStats {
-  background: rgba(255,255,255,0.05); /* muy suave */
-  padding: 10px 15px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  background: rgba(255,255,255,0.06);
+  padding: 12px 15px;
+  border-radius: 10px;
 }
-
 
 .bossStats p {
-  margin: 4px 0;
+  margin: 6px 0;
 }
 
-.bossAbilities, .bossPhases {
-  margin-top: 10px;
-}
-
-.bossAbilities ul, .bossPhases ul {
+/* LIST SECTIONS */
+.bossAbilities ul,
+.bossPhases ul {
   padding-left: 20px;
+  margin: 6px 0;
 }
 
+/* FOOTER */
 #version {
   margin-top: 40px;
   text-align: center;
