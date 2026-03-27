@@ -10,52 +10,52 @@ export default async function handler(req, res) {
     if (typeof body === "string") body = JSON.parse(body);
 
     const prompt = `
-Eres un diseñador experto de modos de juego para Magic: The Gathering.
-Tu tarea es transformar una criatura legendaria en un JEFE para el modo Boss Planechase.
+You are an expert game mode designer for Magic: The Gathering.
+Your task is to transform a legendary creature into a BOSS for the Boss Planechase mode.
 
-Debes LEER y ANALIZAR el texto original de la criatura (oracle text) y generar habilidades de jefe que:
-- Mantengan la identidad mecánica de la carta
-- Conserven su estilo, temática y sinergias
-- No copien literalmente el texto original
-- Amplíen su poder para un combate multijugador
-- Sean claras, equilibradas y jugables
-- Encajen en un combate por fases contra un jefe
+You must READ and ANALYZE the creature's original oracle text and generate boss abilities that:
+- Maintain the mechanical identity of the card
+- Preserve its style, theme, and synergies
+- Do NOT copy the original text literally
+- Scale its power for a multiplayer boss fight
+- Are clear, balanced, and playable
+- Fit a multi-phase boss encounter
 
-USA el oracle text como INSPIRACIÓN DIRECTA para las habilidades.
+Use the oracle text as DIRECT INSPIRATION for the abilities.
 
-DATOS DE LA CARTA:
+CARD DATA:
 Oracle: {{oracle}}
-Colores: {{colors}}
-Tipo: {{type}}
+Colors: {{colors}}
+Type: {{type}}
 Power/Toughness: {{power}}/{{toughness}}
 CMC: {{cmc}}
-Jugadores: {{players}}
+Players: {{players}}
 
-DEVUELVE SOLO JSON ESTRICTO con este formato:
+RETURN ONLY STRICT JSON in this format:
 
 {
   "pasivas": [
-    "Habilidad pasiva 1 basada en el oracle text",
-    "Habilidad pasiva 2 basada en el oracle text",
-    "Habilidad pasiva 3 basada en el oracle text"
+    "Passive ability 1 based on the oracle text",
+    "Passive ability 2 based on the oracle text",
+    "Passive ability 3 based on the oracle text"
   ],
   "turno": [
-    "Habilidad que el jefe ejecuta automáticamente al inicio de su turno",
-    "Otra habilidad de turno inspirada en el texto original",
-    "Otra habilidad de turno"
+    "Ability the boss performs automatically at the start of its turn",
+    "Another turn ability inspired by the original text",
+    "Another turn ability"
   ],
   "caos": [
-    "Efecto poderoso y temático cuando un jugador obtiene CAOS",
-    "Otro efecto de caos",
-    "Otro efecto de caos"
+    "Powerful thematic effect when a player rolls CHAOS",
+    "Another chaos effect",
+    "Another chaos effect"
   ],
-  "fase50": "Transformación o mejora cuando el jefe llega al 50% de vida, inspirada en su mecánica original",
-  "faseFinal": "Ataque final o forma definitiva basada en la identidad de la carta"
+  "fase50": "Transformation or upgrade when the boss reaches 50% life, inspired by its original mechanics",
+  "faseFinal": "Final attack or ultimate form based on the card's identity"
 }
 
-NO añadas explicaciones.
-NO añadas texto fuera del JSON.
-NO repitas el texto original de la carta.
+Do NOT add explanations.
+Do NOT add text outside the JSON.
+Do NOT repeat the original card text.
 `;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -78,7 +78,7 @@ NO repitas el texto original de la carta.
 
     if (!data.choices || !data.choices[0]) {
       console.error("OpenRouter error:", data);
-      return res.status(500).json({ error: "Respuesta inválida de OpenRouter" });
+      return res.status(500).json({ error: "Invalid response from OpenRouter" });
     }
 
     const content = data.choices[0].message.content.trim();
@@ -88,12 +88,12 @@ NO repitas el texto original de la carta.
       const parsed = JSON.parse(content);
       return res.status(200).json(parsed);
     } catch (e) {
-      console.error("JSON inválido:", content);
-      return res.status(500).json({ error: "JSON inválido desde IA" });
+      console.error("Invalid JSON:", content);
+      return res.status(500).json({ error: "Invalid JSON from AI" });
     }
 
   } catch (err) {
     console.error("Backend error:", err);
-    return res.status(500).json({ error: "Error generando habilidades IA" });
+    return res.status(500).json({ error: "Error generating boss abilities" });
   }
 }
