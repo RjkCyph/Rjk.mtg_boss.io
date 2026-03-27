@@ -83,14 +83,21 @@ NO repitas el texto original de la carta.
 
     const content = data.choices[0].message.content.trim();
     console.log("OpenRouter content:", content);
-
+    
+    // Strip code fences
+    let clean = content
+      .replace(/^```json/i, "")
+      .replace(/^```/, "")
+      .replace(/```$/, "")
+      .trim();
+    
     try {
-      const parsed = JSON.parse(content);
+      const parsed = JSON.parse(clean);
       return res.status(200).json(parsed);
     } catch (e) {
-      console.error("JSON inválido:", content);
-      return res.status(500).json({ error: "JSON inválido desde IA" });
-    }
+      console.error("Invalid JSON:", clean);
+      return res.status(500).json({ error: "Invalid JSON from AI" });
+}
 
   } catch (err) {
     console.error("Backend error:", err);
