@@ -19,6 +19,8 @@
         <span class="btn-icon">🔀</span>
         <span>Generar Jefe</span>
       </button>
+      
+      <input type="number" id="playerCount" placeholder="Jugadores" class="select small" min="1" value="1">
 
       <button class="btn secondary" onclick="generateDungeon()">
         <span class="btn-icon">🕳️</span>
@@ -64,5 +66,16 @@
   </footer>
 
   <script src="script.js" defer></script>
+
+  <div id="legend">
+  <div class="legend-icon">ℹ️</div>
+  <div class="legend-panel">
+    <h3>Cálculo de Stats del Boss</h3>
+    <p><strong>Vida:</strong> 20 + (CMC × 5) + (Toughness × 2) × Escalado por jugadores</p>
+    <p><strong>Daño:</strong> Power + (CMC / 2) × Escalado por jugadores</p>
+    <p><strong>Defensa:</strong> 5 + Toughness × Escalado por jugadores</p>
+    <p><strong>Dificultad:</strong> CMC + nº de keywords + (nº de colores × 2)</p>
+  </div>
+</div>
 </body>
 </html>
