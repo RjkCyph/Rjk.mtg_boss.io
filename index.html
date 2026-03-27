@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>MTG Boss Generator</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
-    #boss { white-space: pre-wrap; background: white; padding: 20px; border-radius: 8px; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <h1>MTG Legendary Boss Generator</h1>
-  <button onclick="generateBoss()">Generar Jefe</button>
 
-  <h2>Resultado:</h2>
-  <div id="boss">Haz clic en el botón para generar un jefe.</div>
+  <div id="controls">
+    <button onclick="generateBoss()">Generar Jefe</button>
+    <button onclick="generateDungeon()">Modo Mazmorra (3 jefes)</button>
+
+    <select id="colorFilter">
+      <option value="">Cualquier color</option>
+      <option value="W">Blanco</option>
+      <option value="U">Azul</option>
+      <option value="B">Negro</option>
+      <option value="R">Rojo</option>
+      <option value="G">Verde</option>
+    </select>
+
+    <button onclick="exportJSON()">Exportar JSON</button>
+  </div>
+
+  <div id="bossContainer"></div>
 
   <script src="script.js"></script>
 </body>
