@@ -130,11 +130,8 @@ function renderBoss(card, stats, aiAbilities) {
         <h4>Caos</h4>
         <ul>${aiAbilities.caos.map(a => `<li>${a}</li>`).join("")}</ul>
 
-        <h4>50% Vida</h4>
+        <h4>25% Vida</h4>
         <p>${aiAbilities.fase50}</p>
-
-        <h4>Fase Final</h4>
-        <p>${aiAbilities.faseFinal}</p>
       </div>
     `;
   }
