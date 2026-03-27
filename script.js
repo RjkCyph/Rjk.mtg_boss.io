@@ -3,16 +3,28 @@ let lastGeneratedBosses = [];
 // 1. FETCH SCRYFALL
 
 async function fetchLegendary(colorFilter = "") {
-  let query = "is:legendary type:creature";
+  let query = "is:legendary type:creature r>=r";
+
+  // Filtro por color
   if (colorFilter) query += ` c:${colorFilter}`;
 
+  // Filtros de CMC
+  const minCMC = document.getElementById("minCMC").value;
+  const maxCMC = document.getElementById("maxCMC").value;
+
+  if (minCMC !== "") query += ` cmc>=${minCMC}`;
+  if (maxCMC !== "") query += ` cmc<=${maxCMC}`;
+
   const url = `https://api.scryfall.com/cards/random?q=${encodeURIComponent(query)}`;
+  console.log("Fetching:", url);
+
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error("Error al llamar a Scryfall: " + response.status);
   }
   return await response.json();
 }
+
 
 // 2. EXTRAER DATOS
 
