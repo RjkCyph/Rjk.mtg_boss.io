@@ -1,8 +1,33 @@
-let lastGeneratedBosses = [];
+/* ---------------------------------------------------------
+   0. SLIDERS (CMC + Players)
+--------------------------------------------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const cmcMin = document.getElementById("minCMC");
+  const cmcMax = document.getElementById("maxCMC");
+  const players = document.getElementById("playerCount");
+
+  const cmcMinValue = document.getElementById("cmcMinValue");
+  const cmcMaxValue = document.getElementById("cmcMaxValue");
+  const playersValue = document.getElementById("playersValue");
+
+  // Initialize displayed values
+  if (cmcMinValue) cmcMinValue.textContent = cmcMin.value;
+  if (cmcMaxValue) cmcMaxValue.textContent = cmcMax.value;
+  if (playersValue) playersValue.textContent = players.value;
+
+  // Live updates
+  cmcMin.oninput = () => cmcMinValue.textContent = cmcMin.value;
+  cmcMax.oninput = () => cmcMaxValue.textContent = cmcMax.value;
+  players.oninput = () => playersValue.textContent = players.value;
+});
+
 
 /* ---------------------------------------------------------
-   1. IA DEL JEFE (DeepSeek)
+   1. IA DEL JEFE (DeepSeek / OpenRouter)
 --------------------------------------------------------- */
+
+let lastGeneratedBosses = [];
 
 async function generateBossAI(card) {
   const players = parseInt(document.getElementById("playerCount").value) || 1;
@@ -28,6 +53,7 @@ async function generateBossAI(card) {
   return await response.json();
 }
 
+
 /* ---------------------------------------------------------
    2. SCRYFALL
 --------------------------------------------------------- */
@@ -51,6 +77,7 @@ async function fetchLegendary(colorFilter = "") {
 
   return await response.json();
 }
+
 
 /* ---------------------------------------------------------
    3. EXTRAER DATOS
@@ -77,6 +104,7 @@ function extractCardData(card) {
   };
 }
 
+
 /* ---------------------------------------------------------
    4. STATS DEL JEFE
 --------------------------------------------------------- */
@@ -96,6 +124,7 @@ function computeStats(card) {
 
   return { hp, damage, defense, difficultyScore, difficultyLabel };
 }
+
 
 /* ---------------------------------------------------------
    6. RENDER DEL JEFE
@@ -155,6 +184,7 @@ function renderBoss(card, stats, aiAbilities) {
     </article>
   `;
 }
+
 
 /* ---------------------------------------------------------
    7. BOTONES
@@ -229,6 +259,7 @@ window.exportJSON = function () {
 
   URL.revokeObjectURL(url);
 };
+
 
 /* ---------------------------------------------------------
    8. TECLA ESPACIO
