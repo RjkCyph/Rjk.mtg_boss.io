@@ -1,4 +1,3 @@
-```javascript
 // Últimos jefes generados (para export JSON)
 let lastGeneratedBosses = [];
 
@@ -197,4 +196,3 @@ window.exportJSON = function () {
 
   URL.revokeObjectURL(url);
 };
-```
