@@ -58,6 +58,7 @@ Do NOT add text outside the JSON.
 Do NOT repeat the original card text.
 `;
 
+
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -78,7 +79,7 @@ Do NOT repeat the original card text.
 
     if (!data.choices || !data.choices[0]) {
       console.error("OpenRouter error:", data);
-      return res.status(500).json({ error: "Invalid response from OpenRouter" });
+      return res.status(500).json({ error: "Respuesta inválida de OpenRouter" });
     }
 
     const content = data.choices[0].message.content.trim();
@@ -88,12 +89,12 @@ Do NOT repeat the original card text.
       const parsed = JSON.parse(content);
       return res.status(200).json(parsed);
     } catch (e) {
-      console.error("Invalid JSON:", content);
-      return res.status(500).json({ error: "Invalid JSON from AI" });
+      console.error("JSON inválido:", content);
+      return res.status(500).json({ error: "JSON inválido desde IA" });
     }
 
   } catch (err) {
     console.error("Backend error:", err);
-    return res.status(500).json({ error: "Error generating boss abilities" });
+    return res.status(500).json({ error: "Error generando habilidades IA" });
   }
 }
