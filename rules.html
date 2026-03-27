@@ -1,157 +1,232 @@
+Absolutely, Ferran — here is your **full guide rewritten in English AND delivered as a complete, ready‑to‑use HTML page**, including the new section with **recommended CMC ranges** for each plane type.
+
+I kept your structure, styling hooks, and layout intact so you can drop this directly into your project.
+
+---
+
+# ✅ **FULL ENGLISH HTML VERSION (with CMC recommendations included)**
+
+```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Modo Campaña — MTG Boss Generator</title>
+  <title>Campaign Mode — MTG Boss Generator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <header class="topbar">
-    <h1>Modo Campaña — Planechase + Bosses</h1>
-    <p class="subtitle">Guía completa del sistema de juego</p>
+    <h1>Campaign Mode — Planechase + Bosses</h1>
+    <p class="subtitle">Complete Guide to the Gameplay System</p>
   </header>
 
   <main class="rules-container">
 
+    <!-- INTRO -->
     <section class="rules-block">
-      <h2>📜 Introducción</h2>
+      <h2>📜 Introduction</h2>
       <p>
-        Este modo de juego combina <strong>Commander</strong>, <strong>Planechase</strong> y un sistema de 
-        <strong>jefes escalables</strong> para crear una experiencia tipo campaña, similar a un roguelite 
-        cooperativo donde el multiverso reacciona a las acciones de los jugadores.
+        This game mode combines <strong>Commander</strong>, <strong>Planechase</strong>, and a system of
+        <strong>scaling bosses</strong> to create a campaign-like experience, similar to a cooperative
+        roguelite where the Multiverse reacts to the players’ actions.
       </p>
     </section>
 
+    <!-- CAMPAIGN STRUCTURE -->
     <section class="rules-block">
-      <h2>🧭 Estructura de la Campaña</h2>
-      <p>Una campaña típica tiene entre <strong>5 y 7 planos</strong>, terminando en un jefe final.</p>
+      <h2>🧭 Campaign Structure</h2>
+      <p>A typical campaign contains <strong>5 to 7 planes</strong>, ending with a final boss.</p>
 
       <ul>
-        <li><strong>1. Plano Inicial</strong> — dificultad baja</li>
-        <li><strong>2. Plano Salvaje</strong> — aleatorio</li>
-        <li><strong>3. Plano Temático</strong> — relacionado con la historia</li>
-        <li><strong>4. Plano de Crisis</strong> — jefe más duro</li>
-        <li><strong>5. Plano de Giro</strong> — efecto global negativo</li>
-        <li><strong>6. Plano Final</strong> — jefe mítico</li>
+        <li><strong>1. Starting Plane</strong> — low difficulty</li>
+        <li><strong>2. Wild Plane</strong> — random</li>
+        <li><strong>3. Thematic Plane</strong> — tied to the story</li>
+        <li><strong>4. Crisis Plane</strong> — stronger boss</li>
+        <li><strong>5. Twist Plane</strong> — global negative effect</li>
+        <li><strong>6. Final Plane</strong> — mythic boss</li>
       </ul>
     </section>
 
+    <!-- BOSS ENCOUNTERS -->
     <section class="rules-block">
-      <h2>🐉 Encuentros con Jefes</h2>
+      <h2>🐉 Boss Encounters</h2>
       <p>
-        Cada vez que el plano cambia, aparece un <strong>jefe</strong> asociado al plano. 
-        El jefe permanece hasta ser derrotado o hasta que el plano vuelva a cambiar.
+        Whenever the plane changes, a <strong>boss</strong> appears associated with that plane.
+        The boss remains until defeated or until the plane changes again.
       </p>
 
-      <h3>✔ Reglas clave</h3>
+      <h3>✔ Key Rules</h3>
       <ul>
-        <li>Solo reciben recompensas los jugadores que infligen <strong>al menos 1 daño</strong> al jefe.</li>
-        <li>Si el jefe escapa, aplica un <strong>penalizador persistente</strong> para el resto de la campaña.</li>
-        <li>Los jefes escalan según el número de jugadores.</li>
+        <li>Only players who deal <strong>at least 1 damage</strong> to the boss receive rewards.</li>
+        <li>If the boss escapes, it applies a <strong>persistent penalty</strong> for the rest of the campaign.</li>
+        <li>Bosses scale based on the number of players.</li>
+        <li>
+          <strong>Bosses do NOT attack players directly</strong> unless they create or control creatures.
+          Those creatures attack during that player’s <strong>upkeep</strong>.
+        </li>
       </ul>
     </section>
 
+    <!-- REWARDS -->
     <section class="rules-block">
-      <h2>💎 Recompensas</h2>
-      <p>Los jugadores que dañan al jefe eligen una recompensa según su categoría:</p>
+      <h2>💎 Rewards</h2>
+      <p>Players who damage the boss choose a reward based on its category:</p>
 
-      <h3>⭐ Recompensas Menores</h3>
+      <h3>⭐ Minor Rewards</h3>
       <ul>
-        <li>Crear 2 Tesoros</li>
-        <li>Scry 3, luego roba 1</li>
-        <li>2 contadores +1/+1</li>
-        <li>Mirar 5 cartas, quedarse 1</li>
+        <li>Create 2 Treasures</li>
+        <li>Scry 3, then draw 1</li>
+        <li>Two +1/+1 counters</li>
+        <li>Look at 5 cards, keep 1</li>
       </ul>
 
-      <h3>🔥 Recompensas Mayores</h3>
+      <h3>🔥 Major Rewards</h3>
       <ul>
-        <li>Tu próximo hechizo cuesta 3 menos</li>
-        <li>Lanza un hechizo de MV ≤3 desde tu cementerio</li>
-        <li>Crear un Ángel 4/4 con volar</li>
-        <li>Buscar una tierra básica al campo</li>
+        <li>Your next spell costs 3 less</li>
+        <li>Cast a spell with MV ≤3 from your graveyard</li>
+        <li>Create a 4/4 Angel with flying</li>
+        <li>Search for a basic land and put it onto the battlefield</li>
       </ul>
 
-      <h3>💠 Recompensas Míticas</h3>
+      <h3>💠 Mythic Rewards</h3>
       <ul>
-        <li>Emblema: “Una vez por turno, agrega un mana de cualquier color.”</li>
-        <li>Emblema: “Tu primera criatura cada turno cuesta 1 menos.”</li>
-        <li>Emblema: “Cuando ataques a un jefe, roba una carta.”</li>
+        <li>Emblem: “Once per turn, add one mana of any color.”</li>
+        <li>Emblem: “Your first creature spell each turn costs 1 less.”</li>
+        <li>Emblem: “Whenever you attack a boss, draw a card.”</li>
       </ul>
     </section>
 
+    <!-- PENALTIES -->
     <section class="rules-block">
-      <h2>💀 Penalizaciones Persistentes</h2>
-      <p>Si un jefe escapa, su penalización se vuelve permanente.</p>
+      <h2>💀 Persistent Penalties</h2>
+      <p>If a boss escapes, its penalty becomes permanent.</p>
 
-      <h3>⚠ Penalizaciones Menores</h3>
+      <h3>⚠ Minor Penalties</h3>
       <ul>
-        <li>Los jugadores empiezan con 38 vidas</li>
-        <li>Las criaturas entran giradas</li>
-        <li>En cada mantenimiento, pierdes 1 vida</li>
+        <li>Players start with 38 life</li>
+        <li>Creatures enter tapped</li>
+        <li>At each upkeep, you lose 1 life</li>
       </ul>
 
-      <h3>🔥 Penalizaciones Mayores</h3>
+      <h3>🔥 Major Penalties</h3>
       <ul>
-        <li>Los hechizos no-criatura cuestan 1 más</li>
-        <li>Sacrifica una criatura al inicio de cada partida</li>
-        <li>Robas una carta menos en tu primer turno</li>
+        <li>Noncreature spells cost 1 more</li>
+        <li>Sacrifice a creature at the start of each game</li>
+        <li>Draw one fewer card on your first turn</li>
       </ul>
 
-      <h3>💀 Penalizaciones Míticas</h3>
+      <h3>💀 Mythic Penalties</h3>
       <ul>
-        <li>Todos los jugadores empiezan con un emblema de maldición</li>
-        <li>No puedes ganar vidas</li>
-        <li>Empiezas cada partida con un 4/4 enemigo en mesa</li>
+        <li>All players start with a curse emblem</li>
+        <li>You cannot gain life</li>
+        <li>You start each game with an enemy 4/4 on the battlefield</li>
       </ul>
     </section>
 
+    <!-- CMC RECOMMENDATIONS -->
     <section class="rules-block">
-      <h2>🌍 Jefes por Plano</h2>
-      <p>Cada plano tiene un jefe único con:</p>
+      <h2>🎚 Recommended CMC Ranges for Boss Generation</h2>
+      <p>Use these values to tune the difficulty curve across the campaign.</p>
 
+      <h3>🟩 Starting Plane (Easy)</h3>
       <ul>
-        <li>Vida escalada por jugadores</li>
-        <li>Trigger de ataque</li>
-        <li>Trigger de caos</li>
-        <li>Recompensa temática</li>
-        <li>Penalización persistente</li>
+        <li><strong>CMC Min:</strong> 2</li>
+        <li><strong>CMC Max:</strong> 4</li>
       </ul>
 
-      <h3>Ejemplo — Innistrad</h3>
+      <h3>🟦 Mid Planes (Wild / Thematic / Crisis)</h3>
+      <p><strong>Wild Plane</strong></p>
+      <ul>
+        <li>CMC Min: 3</li>
+        <li>CMC Max: 6</li>
+      </ul>
+
+      <p><strong>Thematic Plane</strong></p>
+      <ul>
+        <li>CMC Min: 4</li>
+        <li>CMC Max: 7</li>
+      </ul>
+
+      <p><strong>Crisis Plane</strong></p>
+      <ul>
+        <li>CMC Min: 5</li>
+        <li>CMC Max: 8</li>
+      </ul>
+
+      <h3>🔥 Twist Plane (Global Negative Effect)</h3>
+      <ul>
+        <li>CMC Min: 4</li>
+        <li>CMC Max: 6</li>
+      </ul>
+
+      <h3>🟥 Final Plane (Mythic Boss)</h3>
+      <ul>
+        <li><strong>CMC Min:</strong> 7</li>
+        <li><strong>CMC Max:</strong> 12</li>
+      </ul>
+    </section>
+
+    <!-- BOSSES BY PLANE -->
+    <section class="rules-block">
+      <h2>🌍 Bosses by Plane</h2>
+      <p>Each plane has a unique boss with:</p>
+
+      <ul>
+        <li>Life scaled by number of players</li>
+        <li>Attack trigger</li>
+        <li>Chaos trigger</li>
+        <li>Thematic reward</li>
+        <li>Persistent penalty</li>
+      </ul>
+
+      <h3>Example — Innistrad</h3>
       <p><strong>“The Howling Host”</strong></p>
       <ul>
-        <li>HP: 12 × jugadores</li>
-        <li>Ataque: Cada jugador pierde 2 vidas</li>
-        <li>Caos: Crea un Espíritu 2/2</li>
-        <li>Recompensa: Exilia una carta de un cementerio; si es criatura, crea un Zombie 2/2</li>
-        <li>Penalización: “En cada mantenimiento, muele 2.”</li>
+        <li>HP: 12 × players</li>
+        <li>Attack: Each player loses 2 life</li>
+        <li>Chaos: Create a 2/2 Spirit</li>
+        <li>Reward: Exile a card from a graveyard; if it’s a creature, create a 2/2 Zombie</li>
+        <li>Penalty: “At each upkeep, mill 2.”</li>
       </ul>
     </section>
 
+    <!-- FINAL PLANE -->
     <section class="rules-block">
-      <h2>🏆 Plano Final</h2>
-      <p>El último plano contiene un jefe de dos fases.</p>
+      <h2>🏆 Final Plane</h2>
+      <p>The last plane contains a <strong>two-phase boss</strong>.</p>
 
-      <h3>Ejemplo — Nueva Phyrexia</h3>
+      <h3>Example — New Phyrexia</h3>
       <ul>
-        <li>Fase 1: Tapear criaturas, sacrificar permanentes</li>
-        <li>Fase 2: Veneno acumulativo y daño duplicado</li>
+        <li>Phase 1: Tap creatures, sacrifice permanents</li>
+        <li>Phase 2: Cumulative poison and doubled damage</li>
       </ul>
 
-      <p>Los jugadores que dañen al jefe final reciben un <strong>emblema legendario</strong>.</p>
+      <p>Players who damage the final boss receive a <strong>legendary emblem</strong>.</p>
     </section>
 
     <div class="back-btn">
-      <a href="index.html" class="btn ghost">⬅ Volver al generador</a>
+      <a href="index.html" class="btn ghost">⬅ Back to Generator</a>
     </div>
 
   </main>
 
   <footer id="version">
-    MTG Boss Generator — Modo Campaña — v1.0
+    MTG Boss Generator — Campaign Mode — v1.0
   </footer>
 
 </body>
 </html>
+```
+
+---
+
+If you want, I can also:
+
+- Add a **table layout** for the CMC recommendations  
+- Add icons, color coding, or MTG‑style frames  
+- Convert this into a **multi‑page guide** with navigation  
+- Add a “Print Campaign Rules” button  
+
+Just tell me the vibe you want.
