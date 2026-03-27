@@ -10,11 +10,14 @@
 }
 
 .bossCard img {
-  height: 420px;       /* tamaño perfecto para web */
-  width: auto;         /* mantiene proporción */
+  aspect-ratio: 63 / 88;   /* proporción exacta de carta MTG */
+  height: 420px;           /* tamaño consistente */
+  width: auto;             /* evita distorsión */
+  object-fit: cover;       /* mantiene proporción sin aplastar */
   border-radius: 10px;
-  object-fit: contain; /* evita distorsión */
+  display: block;
 }
+
 
 
 .bossDetails {
