@@ -52,16 +52,10 @@ The reward MUST be thematic to the creature’s identity.
 RETURN ONLY STRICT JSON in this format:
 
 {
-  "pasivas": [
-    "One unique passive ability based on the oracle text"
-  ],
-  "turno": [
-    "One unique ability the boss performs automatically at the start of each player turn"
-  ],
-  "caos": [
-    "One powerful thematic effect when a player rolls CHAOS"
-  ],
-  "fase50": "Transformation or upgrade when the boss reaches 25% life",
+  "pasivas": "One single bullet of unique passive ability based on the oracle text",
+  "turno":  "One single bullet unique ability the boss performs automatically at the start of each player turn",
+  "caos": "One single bullet powerful thematic effect when a player rolls CHAOS",
+  "fase25": "Transformation or upgrade when the boss reaches 25% life or less",
   "reward": "One reward appropriate to the difficulty tier and inspired by the creature's theme"
 }
 
