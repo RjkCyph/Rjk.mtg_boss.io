@@ -134,14 +134,14 @@ function computeStats(card) {
 
   const hp = Math.round((card.cmc * 2 + card.toughness * 2) * scale);
   const damage = Math.round(card.power * scale);
-  const defense = Math.round((5 + card.toughness) * scale);
+  const e = Math.round((5 + card.toughness) * scale);
 
   const difficultyScore = card.cmc + card.keywords.length + card.colors.length * 2;
   let difficultyLabel = "Mini-jefe";
   if (difficultyScore > 12) difficultyLabel = "Jefe final";
   else if (difficultyScore > 7) difficultyLabel = "Jefe estándar";
 
-  return { hp, damage, defense, difficultyScore, difficultyLabel };
+  return { hp, damage, e, difficultyScore, difficultyLabel };
 }
 
 
@@ -190,7 +190,6 @@ function renderBoss(card, stats, aiAbilities) {
         <div class="bossStats">
           <p><strong>❤️ Life:</strong> ${stats.hp}</p>
           <p><strong>⚔️ Damage:</strong> ${stats.damage}</p>
-          <p><strong>🛡️ Defense:</strong> ${stats.defense}</p>
           <p><strong>Difficulty:</strong> ${stats.difficultyLabel} (Score: ${stats.difficultyScore})</p>
         </div>
 
