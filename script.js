@@ -60,8 +60,12 @@ function computeStats(card) {
   // Escalado por jugadores (ajústalo si quieres)
   const scale = 1 + (players - 1) * 0.35;
 
-  const hp = Math.round((20 + card.cmc * 5 + card.toughness * 2) * scale);
-  const damage = Math.round((card.power + Math.floor(card.cmc / 2)) * scale);
+  // const hp = Math.round((20 + card.cmc * 5 + card.toughness * 2) * scale);
+  // const damage = Math.round((card.power + Math.floor(card.cmc / 2)) * scale);
+  
+  const hp = Math.round((card.cmc * 2 + card.toughness * 2) * scale);
+  const damage = Math.round((card.power) * scale);
+  
   const defense = Math.round((5 + card.toughness) * scale);
 
   const difficultyScore = card.cmc + card.keywords.length + card.colors.length * 2;
@@ -77,13 +81,47 @@ function computeStats(card) {
 function phasesFromColors(colors) {
   const phases = [];
 
-  if (colors.includes("R")) phases.push("Rojo – Enfurecimiento: duplica su daño al 50% de vida.");
-  if (colors.includes("U")) phases.push("Azul – Control: copia habilidades o niega acciones.");
-  if (colors.includes("B")) phases.push("Negro – Nigromancia: invoca esbirros y roba vida.");
-  if (colors.includes("W")) phases.push("Blanco – Juicio: castiga acciones repetidas y crea escudos.");
-  if (colors.includes("G")) phases.push("Verde – Crecimiento: aumenta fuerza e invoca bestias.");
+  // 🔥 ROJO — Furia y daño explosivo
+  if (colors.includes("R")) {
+    phases.push("🔥 Furia Ígnea (Pasiva): El jefe gana +2 al daño base.");
+    phases.push("🔥 Golpe Ígneo (Turno): Al inicio de cada mantenimiento, inflige 3 de daño a cada jugador.");
+    phases.push("🔥 Estallido de Caos (Caos): El Estallido de Caos hace 2 puntos de daño a cada jugador y a cada criatura.");
+  }
 
-  if (phases.length === 0) phases.push("Incoloro – Caos: patrones impredecibles cada ronda.");
+  // 🔵 AZUL — Control, manipulación y copia
+  if (colors.includes("U")) {
+    phases.push("🔵 Eco Mental (Pasiva): La primera vez que un jugador lanza un hechizo cada turno, contrarresta ese hechizo a menos que su controlador pague 1.");
+    phases.push("🔵 Anulación Parcial (Turno): Contrarresta la primera habilidad activada o disparada de un jugador este turno.");
+    phases.push("🔵 Réplica Caótica (Caos): Copia la próxima habilidad o hechizo que lance cualquier jugador.");
+  }
+
+  // ⚫ NEGRO — Nigromancia, drenaje y sacrificios
+  if (colors.includes("B")) {
+    phases.push("⚫ Aura de Muerte (Pasiva): Cada vez que una criatura muere, el jefe gana 1 vida.");
+    phases.push("⚫ Invocación Oscura (Turno): Crea un Esbirro 2/2 que ataca al jugador con más vida.");
+    phases.push("⚫ Drenaje de Alma (Caos): Cada jugador pierde 2 vidas y el jefe gana 2 vidas.");
+  }
+
+  // ⚪ BLANCO — Castigo, orden y protección
+  if (colors.includes("W")) {
+    phases.push("⚪ Juicio Divino (Pasiva): La primera vez que un jugador ataca al jefe cada turno, ese jugador debe girar una criatura que controle.");
+    phases.push("⚪ Escudo de Luz (Turno): El jefe obtiene un contador de escudo hasta su próximo turno.");
+    phases.push("⚪ Castigo Celestial (Caos): Exilia el permanente no-tierra con menor coste de un jugador al azar.");
+  }
+
+  // 🟢 VERDE — Crecimiento, fuerza y criaturas grandes
+  if (colors.includes("G")) {
+    phases.push("🟢 Crecimiento Salvaje (Pasiva): El jefe gana +1/+1 por cada criatura que controla.");
+    phases.push("🟢 Llamado de la Manada (Turno): Crea una Bestia 3/3 que entra atacando al jugador con menos criaturas.");
+    phases.push("🟢 Ira de la Naturaleza (Caos): Todas sus criaturas obtienen +2/+2 y arrollar hasta el final del turno.");
+  }
+
+  // ⚙️ INCOLORE — Caos puro e impredecible
+  if (phases.length === 0) {
+    phases.push("⚙️ Distorsión del Vacío (Pasiva): Los hechizos de los jugadores cuestan 1 más.");
+    phases.push("⚙️ Ruptura del Plano (Turno): Cada jugador exilia la carta superior de su biblioteca. Si es una criatura, el jefe lanza una de ellas al azar sin pagar su coste y pasan a estar bajo su control.");
+    phases.push("⚙️ Tormenta del Vacío (Caos): Repite el efecto de Ruptura del Plano dos veces más.");
+  }
 
   return phases;
 }
@@ -114,7 +152,6 @@ function renderBoss(card, stats) {
         <div class="bossStats">
           <p><strong>❤️ Vida:</strong> ${stats.hp}</p>
           <p><strong>⚔️ Daño:</strong> ${stats.damage}</p>
-          <p><strong>🛡️ Defensa:</strong> ${stats.defense}</p>
           <p><strong>Dificultad:</strong> ${stats.difficultyLabel} (Score: ${stats.difficultyScore})</p>
         </div>
 
