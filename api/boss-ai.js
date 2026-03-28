@@ -28,7 +28,6 @@ The boss CAN:
 - Gain evergreen defensive or strategic keywords (flying, reach, vigilance, hexproof, indestructible, ward, menace, deathtouch, lifelink)
 - Use static, triggered, and automatic abilities
 - Scale effects based on multiplayer dynamics
-- Transform or evolve at life thresholds
 - Produce tokens, counters, or battlefield effects
 - Emulate its original card identity through abilities
 - Affect players’ libraries or permanents (forcing draws, mills, sacrifices, tapping, etc.)
@@ -50,12 +49,6 @@ CHAOS ABILITIES:
 - One single powerful effect
 - Must affect ALL players unless thematically justified
 - Must be fully quantified
-
-25% LIFE ABILITY:
-- Use this formula:
-  bossLife25 = round(totalBossLife × 0.25)
-- The ability MUST explicitly say:
-  “When the boss reaches bossLife25 life…”
 
 === FLAVOR QUOTE RULE ===
 If the card contains italicized flavor text:
@@ -79,13 +72,8 @@ Flavor Text: {{flavor_text}}
 Evaluate difficulty using this formula:
 difficultyScore = CMC + number_of_keywords + toughness + power
 
-Difficulty tiers:
-- 0–7  → Minor Boss
-- 8–12 → Major Boss
-- 13+  → Mythic Boss
-
 === REWARD RULE ===
-Generate ONE reward based on difficulty:
+Generate ONE reward based on boss rank:
 - Minor Boss → Minor reward (small tempo, card selection, small tokens, small buffs)
 - Major Boss → Major reward (mana discount, recursion, strong tokens, card advantage, or temporary token copies of the boss with a drawback)
 - Mythic Boss → Mythic reward (emblems, permanent upgrades, powerful effects)
@@ -101,14 +89,12 @@ The reward MUST:
   "pasivas": "One quantified passive ability with a clear effect on players or the boss",
   "turno": "One quantified ability that triggers at the beginning of each player's upkeep",
   "caos": "One quantified effect that triggers when a player rolls CHAOS",
-  "fase25": "Transformation or upgrade when the boss reaches bossLife25 life",
   "reward": "One difficulty-scaled reward granted to players who dealt significant damage to the boss",
   "quote": "A dramatic, original boss quote inspired by the card's flavor text, or empty string if none exists"
 }
 
 Do NOT add explanations.
 Do NOT add text outside the JSON.
-Do NOT repeat the original card text.
 `;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
