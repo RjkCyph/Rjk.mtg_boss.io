@@ -238,18 +238,49 @@ input[type="range"]::-webkit-slider-thumb:hover {
   padding: 10px 20px;
 }
 
+/* Base quote styling */
 .boss-quote {
   margin-top: 25px;
   text-align: center;
   font-family: "Cinzel", serif;
   font-size: 1.8rem;
-  color: #e8d9b5;
   font-style: italic;
   letter-spacing: 1px;
-  text-shadow: 0 0 12px rgba(0,0,0,0.7);
-  padding: 10px 20px;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding: 20px 30px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* Parchment scroll effect */
+  background: url('parchment-texture.png'), #f7f1d3;
+  background-size: cover;
+  background-blend-mode: multiply;
+  border: 2px solid rgba(80,60,40,0.6);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+
+  /* Fade-in animation */
+  opacity: 0;
+  animation: quoteFadeIn 1.4s ease forwards;
+}
+
+/* Fade-in keyframes */
+@keyframes quoteFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Color-coded themes */
+.quote-white  { color: #f8f4e6; text-shadow: 0 0 10px #fff6c7; }
+.quote-blue   { color: #b7d8ff; text-shadow: 0 0 10px #6bb6ff; }
+.quote-black  { color: #e0d9d9; text-shadow: 0 0 10px #000; }
+.quote-red    { color: #ffd1c0; text-shadow: 0 0 10px #ff3b3b; }
+.quote-green  { color: #d8ffd1; text-shadow: 0 0 10px #4cff4c; }
+
+/* Multicolor bosses (gold) */
+.quote-multicolor {
+  color: #ffe9a6;
+  text-shadow: 0 0 12px #ffdd66;
 }
 
 
