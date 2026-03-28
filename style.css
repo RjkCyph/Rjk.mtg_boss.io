@@ -246,20 +246,28 @@ input[type="range"]::-webkit-slider-thumb:hover {
   font-size: 1.9rem;
   font-style: italic;
   letter-spacing: 1px;
-  padding: 10px 20px;
 
-  /* Always golden text */
+  /* Pure gold text */
   color: #f7e7a1;
   text-shadow: 0 0 12px rgba(255, 215, 100, 0.7);
 
-  /* No background */
+  /* Remove all box-like visuals */
   background: none;
   border: none;
+  padding: 0;
   box-shadow: none;
 
   /* Fade-in animation */
   opacity: 0;
   animation: quoteFadeIn 1.2s ease forwards;
+
+  /* Smooth hover animation */
+  transition: transform 0.25s ease, text-shadow 0.25s ease;
+}
+
+.boss-quote:hover {
+  transform: translateY(-3px);
+  text-shadow: 0 0 18px rgba(255, 225, 140, 1);
 }
 
 @keyframes quoteFadeIn {
