@@ -18,7 +18,7 @@ The boss is NOT a player. It functions as an enhanced creature with automated ab
 
 The boss CANNOT:
 - Attack during combat under any circumstance
-- Cast spells, activate mana abilities, or draw cards or mill cards on his own. 
+- Cast spells, activate mana abilities, or draw cards or mill cards on its own
 - Gain combat modifiers that explicitly enhance attacking (haste, trample, double strike, myriad, exalted, etc.)
 - Make choices that only players can make (discarding, paying costs, choosing modes, etc.)
 - Use abilities that require resources it cannot have (mana, hand, library, graveyard unless explicitly granted)
@@ -30,21 +30,41 @@ The boss CAN:
 - Scale effects based on multiplayer dynamics
 - Transform or evolve at life thresholds
 - Produce tokens, counters, or battlefield effects
-- Use abilities that emulate its original card identity
-- Affect players libraries somehow, forcing the players to draw or mill for example or execute commands on their creatures or permaments
+- Emulate its original card identity through abilities
+- Affect players’ libraries or permanents (forcing draws, mills, sacrifices, tapping, etc.)
 
-=== DESIGN REQUIREMENTS ===
-You must READ and ANALYZE the creature's original oracle text and generate boss abilities that:
-- Maintain the mechanical identity of the card
-- Preserve its style, theme, and synergies
-- Do NOT copy the original text literally
-- Scale its power for a multiplayer boss fight
-- Are clear, balanced, and playable
-- Fit a multi-phase boss encounter
-- Include a REWARD that scales with boss difficulty
-- Respect all boss restrictions listed above
+=== ABILITY CLARITY RULES ===
+All abilities MUST be mechanically clear and fully quantified. Avoid vague or narrative effects.
 
-Use the oracle text as DIRECT INSPIRATION for the abilities.
+PASSIVE ABILITIES:
+- Always active
+- Must specify exact numerical effects
+- Must clearly state whether the effect applies to the boss or to players
+
+TURN ABILITIES:
+- Must trigger at the beginning of EACH PLAYER’S UPKEEP
+- Must specify exact values, targets, and outcomes
+- Must NOT be vague global events (storms, decay, etc.)
+
+CHAOS ABILITIES:
+- One single powerful effect
+- Must affect ALL players unless thematically justified
+- Must be fully quantified
+
+25% LIFE ABILITY:
+- Use this formula:
+  bossLife25 = round(totalBossLife × 0.25)
+- The ability MUST explicitly say:
+  “When the boss reaches bossLife25 life…”
+
+=== FLAVOR QUOTE RULE ===
+If the card contains italicized flavor text:
+- Generate an ORIGINAL boss quote inspired by it
+- Must show personality, intent, or threat
+- Must NOT copy or paraphrase the original flavor text
+
+If no flavor text exists:
+- Return an empty string
 
 === CARD DATA ===
 Oracle: {{oracle}}
@@ -53,32 +73,42 @@ Type: {{type}}
 Power/Toughness: {{power}}/{{toughness}}
 CMC: {{cmc}}
 Players: {{players}}
+Flavor Text: {{flavor_text}}
 
 === BOSS DIFFICULTY RULE ===
 Evaluate difficulty using this formula:
 difficultyScore = CMC + number_of_keywords + toughness + power
 
+Difficulty tiers:
+- 0–7  → Minor Boss
+- 8–12 → Major Boss
+- 13+  → Mythic Boss
+
 === REWARD RULE ===
 Generate ONE reward based on difficulty:
 - Minor Boss → Minor reward (small tempo, card selection, small tokens, small buffs)
-- Major Boss → Major reward (mana discount, recursion, strong tokens, card advantage, or token copies of the boss itself with a handicap and a condition to disappear or sacrifice itself after some turns)
+- Major Boss → Major reward (mana discount, recursion, strong tokens, card advantage, or temporary token copies of the boss with a drawback)
 - Mythic Boss → Mythic reward (emblems, permanent upgrades, powerful effects)
 
-The reward MUST be thematic and significant to the creature’s identity and MUST go to players who dealt significant damage to the boss. Creating a 1/1 token is not a significant reward.
+The reward MUST:
+- Be thematic to the creature’s identity
+- Be significant (no 1/1 tokens)
+- Clearly state that it is granted ONLY to players who dealt significant damage to the boss
 
 === OUTPUT FORMAT (STRICT JSON ONLY) ===
 
 {
-  "pasivas": "One single bullet of unique passive ability based on the oracle text with a clear and detailed effect on the players or the boss itself. Avoid the use of -you- when referring to the object of the effect, instead clearly indicate either the effect takes place on the boss or on the current player",
-  "turno": "One single bullet unique and detailed ability the boss performs automatically at the start of each player turn. Avoid the use of -you- when referring to the object of the effect, instead clearly indicate either the effect takes place on the boss or on the current player",
-  "caos": "One single bullet powerful thematic effect when a player rolls CHAOS that usually affects all players at the same time",
-  "fase25": "Transformation or upgrade when the boss reaches 25% life or less making the boss slightly more dangerous",
-  "reward": "One reward appropriate to the difficulty tier and inspired by the creature's theme. Specify clearly that the reward goes to those players who managed to deal damage to the boss in a significant way",
+  "pasivas": "One quantified passive ability with a clear effect on players or the boss",
+  "turno": "One quantified ability that triggers at the beginning of each player's upkeep",
+  "caos": "One quantified effect that triggers when a player rolls CHAOS",
+  "fase25": "Transformation or upgrade when the boss reaches bossLife25 life",
+  "reward": "One difficulty-scaled reward granted to players who dealt significant damage to the boss",
   "quote": "A dramatic, original boss quote inspired by the card's flavor text, or empty string if none exists"
 }
 
 Do NOT add explanations.
 Do NOT add text outside the JSON.
+Do NOT repeat the original card text.
 `;
 
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
