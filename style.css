@@ -227,6 +227,17 @@ input[type="range"]::-webkit-slider-thumb:hover {
   box-shadow: 0 0 12px rgba(0,0,0,0.4);
 }
 
+.boss-quote {
+  margin-top: 20px;
+  font-family: "Cinzel", serif;
+  font-size: 1.4rem;
+  color: #e8d9b5;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+
+
 .bossAI h4 {
   margin: 10px 0 4px 0;
   color: #dcd7ff;
