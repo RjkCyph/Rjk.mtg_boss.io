@@ -8,6 +8,16 @@ export default async function handler(req, res) {
   try {
     let body = req.body;
     if (typeof body === "string") body = JSON.parse(body);
+    
+    const filledPrompt = prompt
+      .replace("{{oracle}}", body.oracle || "")
+      .replace("{{colors}}", Array.isArray(body.colors) ? body.colors.join(", ") : (body.colors || ""))
+      .replace("{{type}}", body.type || "")
+      .replace("{{power}}", String(body.power ?? "0"))
+      .replace("{{toughness}}", String(body.toughness ?? "0"))
+      .replace("{{cmc}}", String(body.cmc ?? "0"))
+      .replace("{{players}}", String(body.players ?? "1"))
+      .replace("{{flavor_text}}", body.flavor_text || "");
 
 const prompt = `
 You are an expert game mode designer for Magic: The Gathering.
@@ -104,10 +114,8 @@ Do NOT add text outside the JSON.
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        //model: "deepseek-r1:free",
-        // model: "llama3-8b",
         model: "openrouter/free",
-        messages: [{ role: "user", content: prompt }],
+        messages: [{ role: "user", content: filledPrompt }],
         temperature: 0.7
       })
     });
