@@ -243,25 +243,28 @@ input[type="range"]::-webkit-slider-thumb:hover {
   margin-top: 25px;
   text-align: center;
   font-family: "Cinzel", serif;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-style: italic;
   letter-spacing: 1px;
-  padding: 20px 30px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 10px 20px;
 
-  /* Parchment scroll effect */
-  background: url('parchment-texture.png'), #f7f1d3;
-  background-size: cover;
-  background-blend-mode: multiply;
-  border: 2px solid rgba(80,60,40,0.6);
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  /* Always golden text */
+  color: #f7e7a1;
+  text-shadow: 0 0 12px rgba(255, 215, 100, 0.7);
+
+  /* No background */
+  background: none;
+  border: none;
+  box-shadow: none;
 
   /* Fade-in animation */
   opacity: 0;
-  animation: quoteFadeIn 1.4s ease forwards;
+  animation: quoteFadeIn 1.2s ease forwards;
+}
+
+@keyframes quoteFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Fade-in keyframes */
