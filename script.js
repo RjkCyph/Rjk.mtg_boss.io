@@ -174,9 +174,6 @@ function renderBoss(card, stats, aiAbilities) {
         <h4>Chaos</h4>
         <p>${aiAbilities.caos}</p>
 
-        <h4>25% Low Life</h4>
-        <p>${aiAbilities.fase25}</p>
-
         <h4>Reward</h4>
         <p>${aiAbilities.reward}</p>
       </div>
