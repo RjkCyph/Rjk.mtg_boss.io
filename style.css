@@ -227,17 +227,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
   box-shadow: 0 0 12px rgba(0,0,0,0.4);
 }
 
-#bossQuoteContainer {
-  margin-top: 20px;
-  text-align: center;
-  font-family: "Cinzel", serif;
-  font-size: 1.6rem;
-  color: #e8d9b5;
-  font-style: italic;
-  text-shadow: 0 0 10px rgba(0,0,0,0.6);
-  padding: 10px 20px;
-}
-
 /* Base quote styling */
 .boss-quote {
   margin-top: 25px;
