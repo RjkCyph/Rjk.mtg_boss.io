@@ -238,6 +238,21 @@ input[type="range"]::-webkit-slider-thumb:hover {
   padding: 10px 20px;
 }
 
+.boss-quote {
+  margin-top: 25px;
+  text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+  color: #e8d9b5;
+  font-style: italic;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(0,0,0,0.7);
+  padding: 10px 20px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+
 
 
 .bossAI h4 {
