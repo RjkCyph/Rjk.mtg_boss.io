@@ -136,10 +136,10 @@ function computeStats(card) {
   const damage = Math.round(card.power * scale);
   const e = Math.round((5 + card.toughness) * scale);
 
-  const difficultyScore = card.cmc + card.keywords.length + card.colors.length * 2;
-  let difficultyLabel = "Mini-jefe";
-  if (difficultyScore > 12) difficultyLabel = "Jefe final";
-  else if (difficultyScore > 7) difficultyLabel = "Jefe estándar";
+  const difficultyScore = card.cmc + card.keywords.length + card.toughness + card.power;
+  let difficultyLabel = "Low";
+  if (difficultyScore > 22) difficultyLabel = "High";
+  else if (difficultyScore > 15) difficultyLabel = "Mid Level";
 
   return { hp, damage, e, difficultyScore, difficultyLabel };
 }
