@@ -56,9 +56,9 @@ async function generateBossAI(card) {
     body: JSON.stringify({
       oracle: card.oracle_text,
       colors: card.colors || [],
-      type: card.type_line || "",
+      type: card.types || "",     // FIXED
       power: card.power || "0",
-      flavor_text: card.flavor_text || card.flavor_text || "",
+      flavor_text: card.flavor_text || "",   // FIXED
       toughness: card.toughness || "0",
       cmc: card.cmc || 0,
       players
