@@ -58,7 +58,7 @@ async function generateBossAI(card) {
       colors: card.colors || [],
       type: card.type_line || "",
       power: card.power || "0",
-      flavor_text: face.flavor_text || card.flavor_text || "",
+      flavor_text: card.flavor_text || card.flavor_text || "",
       toughness: card.toughness || "0",
       cmc: card.cmc || 0,
       players
@@ -116,6 +116,7 @@ function extractCardData(card) {
     cmc: card.cmc || 0,
     types: card.type_line || "",
     oracle_text: face.oracle_text || "",
+    flavor_text: face.flavor_text || card.flavor_text || "",
     power: parseInt(face.power) || 0,
     toughness: parseInt(face.toughness) || 0,
     keywords: card.keywords || [],
@@ -216,7 +217,10 @@ window.generateBoss = async function () {
   try {
     const color = document.getElementById("colorFilter").value;
     const container = document.getElementById("bossContainer");
-    container.innerHTML = "<p>Generando jefe...</p>";
+    const quoteBox = document.getElementById("bossQuoteContainer");
+
+    container.innerHTML = "<p>Generating boss...</p>";
+    quoteBox.innerHTML = ""; // clear previous quote
 
     const raw = await fetchLegendary(color);
     const card = extractCardData(raw);
@@ -228,10 +232,19 @@ window.generateBoss = async function () {
 
     container.innerHTML = renderBoss(card, stats, aiAbilities);
 
+    // NEW: Render quote
+    if (aiAbilities.quote && aiAbilities.quote.trim() !== "") {
+      quoteBox.innerHTML = `
+        <div class="boss-quote">"${aiAbilities.quote}"</div>
+      `;
+    } else {
+      quoteBox.innerHTML = "";
+    }
+
   } catch (err) {
     console.error(err);
     document.getElementById("bossContainer").innerHTML =
-      "<p>Error generando jefe. Mira la consola del navegador.</p>";
+      "<p>Error generating boss. Check console.</p>";
   }
 };
 
