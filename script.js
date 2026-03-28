@@ -58,6 +58,7 @@ async function generateBossAI(card) {
       colors: card.colors || [],
       type: card.type_line || "",
       power: card.power || "0",
+      flavor_text: face.flavor_text || card.flavor_text || "",
       toughness: card.toughness || "0",
       cmc: card.cmc || 0,
       players
