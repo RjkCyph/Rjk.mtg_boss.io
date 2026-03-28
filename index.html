@@ -20,14 +20,7 @@
           <span class="btn-icon">🔀</span>
           <span>Generate</span>
         </button>
-      
-        <!--
-          <button class="btn secondary" onclick="generateDungeon()">
-            <span class="btn-icon">🕳️</span>
-            <span>Modo Mazmorra (3 jefes)</span>
-          </button>
-        -->
-      
+
         <div class="filter-block">
           <label for="colorFilter" class="filter-label">Color</label>
           <select id="colorFilter" class="select">
@@ -39,26 +32,28 @@
             <option value="G">Green</option>
           </select>
         </div>
-      
-      <div class="slicer-group">
-        <label>CMC mínimo: <span id="cmcMinValue">4</span></label>
-        <input type="range" id="minCMC" min="1" max="6" value="3">
+
+        <!-- UPDATED LABELS -->
+        <div class="slicer-group">
+          <label>Min Cost: <span id="cmcMinValue">4</span></label>
+          <input type="range" id="minCMC" min="1" max="15" value="4">
+        </div>
+
+        <div class="slicer-group">
+          <label>Max Cost: <span id="cmcMaxValue">6</span></label>
+          <input type="range" id="maxCMC" min="1" max="15" value="6">
+        </div>
+
+        <div class="slicer-group">
+          <label>Players: <span id="playersValue">4</span></label>
+          <input type="range" id="playerCount" min="1" max="5" value="4">
+        </div>
+
       </div>
-      
-      <div class="slicer-group">
-        <label>CMC máximo: <span id="cmcMaxValue">6</span></label>
-        <input type="range" id="maxCMC" min="6" max="15" value="5">
-      </div>
-      
-      <div class="slicer-group">
-        <label>Jugadores: <span id="playersValue">4</span></label>
-        <input type="range" id="playerCount" min="1" max="5" value="4">
-      </div>
-      
-      </div>
-       <a href="rules.html" class="btn info">
+
+      <a href="rules.html" class="btn info">
         <span class="btn-icon">📘</span>
-        <span>Cómo funciona el modo campaña</span>
+        <span>How does the Boss Planechase mode works</span>
       </a>
     </section>
 
@@ -66,7 +61,12 @@
       <p>Click <span class="keycap">Space</span> to generate</p>
     </section>
 
+    <!-- BOSS OUTPUT -->
     <section id="bossContainer"></section>
+
+    <!-- NEW: QUOTE OUTPUT -->
+    <section id="bossQuoteContainer"></section>
+
   </main>
 
   <footer id="version">
@@ -76,13 +76,14 @@
   <script src="script.js" defer></script>
 
   <div id="legend">
-  <div class="legend-icon">ℹ️</div>
-  <div class="legend-panel">
-    <h3>Cálculo de Stats del Boss</h3>
-    <p><strong>Vida:</strong> (CMC × 5) + (Toughness × 2) × Escalado por jugadores</p>
-    <p><strong>Daño:</strong> Power × Escalado por jugadores</p>
-    <p><strong>Dificultad:</strong> CMC + nº de keywords + (nº de colores × 2)</p>
+    <div class="legend-icon">ℹ️</div>
+    <div class="legend-panel">
+      <h3>Boss stats estimation</h3>
+      <p><strong>Life:</strong> (CMC × 5) + (Toughness × 2) × Player Scale</p>
+      <p><strong>Damage:</strong> Power × Player Scale</p>
+      <p><strong>Difficulty:</strong> CMC + nº keywords + Power + Toughness</p>
+    </div>
   </div>
-</div>
+
 </body>
 </html>
