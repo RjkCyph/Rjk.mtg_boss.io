@@ -9,11 +9,24 @@ export default async function handler(req, res) {
     let body = req.body;
     if (typeof body === "string") body = JSON.parse(body);
 
-    const prompt = `
+const prompt = `
 You are an expert game mode designer for Magic: The Gathering.
 Your task is to transform a legendary creature into a BOSS for the Boss Planechase mode.
 
-You must READ and ANALYZE the creature's original oracle text and generate boss abilities that:
+The boss is NOT a player. It cannot:
+- Attack during combat
+- Cast spells, activate mana abilities, or draw cards
+- Gain combat-based attack modifiers such as haste, trample, double strike, or similar effects that modify attacking
+- Make choices that only players can make
+
+The boss CAN:
+- Block when attacked
+- Gain evergreen strategic keywords that do not modify attacking (flying, reach, vigilance, hexproof, indestructible, ward, etc.)
+- Use triggered, static, and automatic abilities
+- Use phase-based transformations
+- Scale its effects based on multiplayer dynamics
+
+Your job is to READ and ANALYZE the creature's original oracle text and generate boss abilities that:
 - Maintain the mechanical identity of the card
 - Preserve its style, theme, and synergies
 - Do NOT copy the original text literally
@@ -21,6 +34,7 @@ You must READ and ANALYZE the creature's original oracle text and generate boss 
 - Are clear, balanced, and playable
 - Fit a multi-phase boss encounter
 - Include a REWARD that scales with boss difficulty
+- Respect all boss restrictions listed above
 
 Use the oracle text as DIRECT INSPIRATION for the abilities.
 
@@ -54,7 +68,7 @@ RETURN ONLY STRICT JSON in this format:
 {
   "pasivas": "One single bullet of unique passive ability based on the oracle text with a clear and detailed effect on the players or the boss itself. Avoid the use of -you- when referring to the object of the effect, instead clearly indicate either the effect takes place on the boss or on the current player",
   "turno":  "One single bullet unique and detailed ability the boss performs automatically at the start of each player turn. Avoid the use of -you- when referring to the object of the effect, instead clearly indicate either the effect takes place on the boss or on the current player",
-  "caos": "One single bullet powerful thematic effect when a player rolls CHAOS that usually affect all players at the same time",
+  "caos": "One single bullet powerful thematic effect when a player rolls CHAOS that usually affects all players at the same time",
   "fase25": "Transformation or upgrade when the boss reaches 25% life or less making the boss slightly more dangerous",
   "reward": "One reward appropriate to the difficulty tier and inspired by the creature's theme. Specify clearly that the reward goes to those players who managed to deal damage to the boss in a significant way"
 }
